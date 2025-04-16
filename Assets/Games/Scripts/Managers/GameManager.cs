@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public PlaceTower towerPlacer;
     public Button startButton;
+    public EnemySpawner enemySpawner;
 
 
     public void StartGame()
@@ -12,5 +13,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game started");
         towerPlacer.LockPlacement();
         startButton.GetComponent<ButtonVisibility>().OnGameStart();
+        enemySpawner.StartWave();
     }
 }
