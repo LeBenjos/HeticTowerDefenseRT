@@ -1,16 +1,17 @@
 using UnityEngine;
 
-public class spike_collision : MonoBehaviour
+public class SpikeCollision : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Enemy"))
+        {
+            Spike(other.gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Spike(GameObject enemy)
     {
-        
+        Destroy(enemy);
     }
 }
