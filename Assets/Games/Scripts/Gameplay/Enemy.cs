@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 
     public void Start()
     {
-        Debug.Log("Create enemy");
+        //Debug.Log("Create enemy");
     }
     
     public void Initialize(Transform target, EnemyPool pool, int hp)
@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
         if (hp <= 0)
         {
             pool.ReturnEnemy(gameObject);
+			GameManager.Instance.AddKill();
         }
     }
 

@@ -9,7 +9,6 @@ public class EnemyDamage : MonoBehaviour
     {
         if (other.CompareTag("Tower"))
         {
-			Debug.Log("collided");
             TowerHealth tower = other.GetComponent<TowerHealth>();
             if (tower != null)
             {
