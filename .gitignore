@@ -77,3 +77,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 /HeticTowerDefenseRT_BurstDebugInformation_DoNotShip
+.idea/
