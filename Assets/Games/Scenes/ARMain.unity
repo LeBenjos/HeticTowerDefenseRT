@@ -348,8 +348,8 @@ MonoBehaviour:
   towerPlacer: {fileID: 1820967410}
   startButton: {fileID: 644986319}
   enemySpawner: {fileID: 1840412540}
-  initialTimeBetweenSpawns: 2
-  initialEnemiesPerWave: 5
+  initialTimeBetweenSpawns: 5
+  initialEnemiesPerWave: 1
 --- !u!1 &644986318
 GameObject:
   m_ObjectHideFlags: 0

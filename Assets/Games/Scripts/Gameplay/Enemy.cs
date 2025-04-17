@@ -25,7 +25,6 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * speed);
         transform.LookAt(target.position);
 
-        // Si trop proche, on retourne dans le pool
         if (Vector3.Distance(transform.position, target.position) < dispawnDistance)
         {
             pool.ReturnEnemy(gameObject);
