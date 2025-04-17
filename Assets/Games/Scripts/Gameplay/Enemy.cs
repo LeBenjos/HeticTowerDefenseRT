@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{
+{   
+    private int hp;
     private Transform target;
     private EnemyPool pool;
     [SerializeField] private float speed = 0.5f;
@@ -11,12 +12,23 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Create enemy");
     }
-
-    public void Initialize(Transform target, EnemyPool pool)
+    
+    public void Initialize(Transform target, EnemyPool pool, int hp)
     {
         this.target = target;
         this.pool = pool;
+        this.hp = hp;
     }
+
+    public void TakeDamage(int damage)
+    {
+        hp -= damage;
+        if (hp <= 0)
+        {
+            pool.ReturnEnemy(gameObject);
+        }
+    }
+
 
     void Update()
     {
@@ -30,5 +42,6 @@ public class Enemy : MonoBehaviour
         {
             pool.ReturnEnemy(gameObject);
         }
+        
     }
 }

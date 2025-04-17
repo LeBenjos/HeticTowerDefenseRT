@@ -53,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemy = enemyPool.GetEnemy();
         enemy.transform.SetPositionAndRotation(spawnPos, Quaternion.identity);
         enemy.SetActive(true);
-        enemy.GetComponent<Enemy>().Initialize(target, enemyPool); // On passe le pool pour pouvoir se relâcher ensuite
+        enemy.GetComponent<Enemy>().Initialize(target, enemyPool, 10); // On passe le pool pour pouvoir se relâcher ensuite
     }
 
     // Définir la cible des ennemis (la position de la tour)
