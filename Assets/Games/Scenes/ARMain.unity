@@ -350,6 +350,9 @@ MonoBehaviour:
   enemySpawner: {fileID: 1840412540}
   initialTimeBetweenSpawns: 5
   initialEnemiesPerWave: 1
+  gameOverScreen: {fileID: 0}
+  timeText: {fileID: 0}
+  killText: {fileID: 0}
 --- !u!1 &644986318
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +530,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1739850695}
-  - {fileID: 635131802}
   - {fileID: 1948318286}
   m_Father: {fileID: 1945187351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1660,9 +1662,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd19b6e89b58b493a8708ba6dbf8796f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2244609966980162468, guid: c561a7ba748e04de597c4233e33615ea,
-    type: 3}
-  poolSize: 20
+  enemyPrefabs:
+  - type: 0
+    prefab: {fileID: 2244609966980162468, guid: c561a7ba748e04de597c4233e33615ea,
+      type: 3}
+  - type: 1
+    prefab: {fileID: 5447861235296962828, guid: 6941b3c88ec46452b85a4c26d6170f18,
+      type: 3}
+  initialPoolSize: 10
 --- !u!1 &1820967408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,10 +1762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40bebbd4a63b45cf86d7d370e75116b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2244609966980162468, guid: c561a7ba748e04de597c4233e33615ea,
-    type: 3}
   enemyPool: {fileID: 1754846277}
   spawnRadius: 3
+  bossSpawnChance: 0.5
 --- !u!1 &1945187350
 GameObject:
   m_ObjectHideFlags: 0

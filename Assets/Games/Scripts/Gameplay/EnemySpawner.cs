@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private EnemyPool enemyPool;
-    private Transform target;
     [SerializeField] private float spawnRadius = 3f;
+    [SerializeField] private float bossSpawnChance = 0.01f;
 
+    private Transform target;
     private float timeBetweenSpawns;
     private int enemiesPerWave;
     private float spawnTimer;
@@ -47,11 +47,19 @@ public class EnemySpawner : MonoBehaviour
         Vector2 circlePos = Random.insideUnitCircle.normalized * spawnRadius;
         Vector3 spawnPos = new Vector3(circlePos.x, 0, circlePos.y) + target.position;
 
-        GameObject enemy = enemyPool.GetEnemy();
+        // Choisir le type à spawn
+        EnemyType typeToSpawn = Random.value < bossSpawnChance ? EnemyType.Boss : EnemyType.Minion;
+
+        GameObject enemy = enemyPool.GetEnemy(typeToSpawn);
+        if (enemy == null) return;
+
         enemy.transform.SetPositionAndRotation(spawnPos, Quaternion.identity);
         enemy.SetActive(true);
-        enemy.GetComponent<Enemy>().Initialize(target, enemyPool, 10); // TODO Modifier l'assignation des hp
+
+        EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
+        enemyBase.Initialize(target, enemyPool);
     }
+
 
     public void SetTarget(Transform newTarget)
     {

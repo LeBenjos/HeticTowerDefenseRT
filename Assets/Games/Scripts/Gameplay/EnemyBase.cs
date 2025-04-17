@@ -1,32 +1,34 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour
 {
-    [SerializeField] private int hp = 10;
-    private Transform target;
-    private EnemyPool pool;
-    private Animator animator;
+    public abstract EnemyType EnemyType { get; }
 
-    [SerializeField] private float speed = 0.5f;
-    [SerializeField] private float despawnDistance = 0.1f;
+    protected Transform target;
+    protected EnemyPool pool;
+    protected Animator animator;
 
-    private EnemyState currentState;
+    protected int maxHp = 1;
+    protected int currentHp = 1;
+    protected float speed = 1f;
+    protected float despawnDistance = 1f;
 
-    private void Awake()
+    protected EnemyState currentState;
+
+    protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    public void Initialize(Transform target, EnemyPool pool, int hp)
+    public virtual void Initialize(Transform target, EnemyPool pool)
     {
         this.target = target;
         this.pool = pool;
-        this.hp = hp;
-
+        currentHp = maxHp;
         SetState(EnemyState.Spawning);
     }
 
-    private void SetState(EnemyState newState)
+    protected virtual void SetState(EnemyState newState)
     {
         currentState = newState;
 
@@ -45,15 +47,15 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        hp -= damage;
-        if (hp <= 0)
+        currentHp -= damage;
+        if (currentHp <= 0)
         {
             pool.ReturnEnemy(gameObject);
             GameManager.Instance.AddKill();
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (target == null || currentState != EnemyState.Moving) return;
 

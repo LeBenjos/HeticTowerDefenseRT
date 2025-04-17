@@ -492,10 +492,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7004083431610717199}
-  - component: {fileID: 1353940155694737686}
   - component: {fileID: 4212847621631079486}
+  - component: {fileID: 1602008411553543892}
   m_Layer: 0
-  m_Name: enemy
+  m_Name: EnemyBoss2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -511,27 +511,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7924062956071611970}
   - {fileID: 565346472406281842}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1353940155694737686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2244609966980162468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777d19e7cf4d9426898c92d104808da1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.15
-  despawnDistance: 0.05
 --- !u!95 &4212847621631079486
 Animator:
   serializedVersion: 7
@@ -554,6 +540,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1602008411553543892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2244609966980162468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867037e2e1ab74fc1ba66f91b2dc17cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 50
+  speed: 0.3
+  despawnDistance: 0.1
 --- !u!1 &2382583709619093117
 GameObject:
   m_ObjectHideFlags: 0
