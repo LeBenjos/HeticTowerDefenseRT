@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private EnemyPool enemyPool;
     private Transform target;
     [SerializeField] private float spawnRadius = 3f;
 
@@ -46,11 +47,13 @@ public class EnemySpawner : MonoBehaviour
     // Faire apparaître un ennemi individuel
     private void SpawnEnemy()
     {
-        Vector2 circlePos = Random.insideUnitCircle.normalized * spawnRadius;  // Position aléatoire autour du cercle
-        Vector3 spawnPos = new Vector3(circlePos.x, 0, circlePos.y) + target.position;  // Position finale de spawn
+        Vector2 circlePos = Random.insideUnitCircle.normalized * spawnRadius;
+        Vector3 spawnPos = new Vector3(circlePos.x, 0, circlePos.y) + target.position;
 
-        GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);  // Crée l'ennemi
-        enemy.GetComponent<Enemy>().Initialize(target);  // Initialiser l'ennemi (mettre à jour sa cible)
+        GameObject enemy = enemyPool.GetEnemy();
+        enemy.transform.SetPositionAndRotation(spawnPos, Quaternion.identity);
+        enemy.SetActive(true);
+        enemy.GetComponent<Enemy>().Initialize(target, enemyPool); // On passe le pool pour pouvoir se relâcher ensuite
     }
 
     // Définir la cible des ennemis (la position de la tour)
