@@ -25,6 +25,6 @@ public class TowerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Tower destroyed!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+       	GameManager.Instance.TriggerGameOver();
     }
 }
