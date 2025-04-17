@@ -6,34 +6,75 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     private Transform target;
     [SerializeField] private float spawnRadius = 3f;
-    [SerializeField] private int enemiesPerWave = 5;
-    [SerializeField] private float timeBetweenSpawns = 1f;
 
-    public void StartWave()
+    private float timeBetweenSpawns;  // Temps entre chaque spawn
+    private int enemiesPerWave;       // Nombre d'ennemis à faire apparaître à chaque fois
+    private float spawnTimer;         // Timer pour gérer le délai de spawn
+    private bool isSpawning = false;  // Booléen pour contrôler si les ennemis sont en train de spawner
+
+    void Start()
     {
-        StartCoroutine(SpawnWave());
+        spawnTimer = 0f;  // Initialiser le timer à 0
     }
 
+    void Update()
+    {
+        if (!isSpawning)
+            return;
+
+        // Si le timer est à 0, il est temps de spawn les ennemis
+        if (spawnTimer <= 0f)
+        {
+            SpawnEnemies();  // Spawn les ennemis
+            spawnTimer = timeBetweenSpawns;  // Réinitialiser le timer pour le prochain spawn
+        }
+        else
+        {
+            spawnTimer -= Time.deltaTime;  // Réduire le timer à chaque frame
+        }
+    }
+
+    // Faire apparaître les ennemis
+    private void SpawnEnemies()
+    {
+        for (int i = 0; i < enemiesPerWave; i++)  // Spawn plusieurs ennemis par vague
+        {
+            SpawnEnemy();
+        }
+    }
+
+    // Faire apparaître un ennemi individuel
+    private void SpawnEnemy()
+    {
+        Vector2 circlePos = Random.insideUnitCircle.normalized * spawnRadius;  // Position aléatoire autour du cercle
+        Vector3 spawnPos = new Vector3(circlePos.x, 0, circlePos.y) + target.position;  // Position finale de spawn
+
+        GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);  // Crée l'ennemi
+        enemy.GetComponent<Enemy>().Initialize(target);  // Initialiser l'ennemi (mettre à jour sa cible)
+    }
+
+    // Définir la cible des ennemis (la position de la tour)
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
     }
 
-    private IEnumerator SpawnWave()
+    // Mettre à jour les paramètres de spawn (temps entre chaque spawn, nombre d'ennemis)
+    public void UpdateSpawnSettings(SpawnSettings newSettings)
     {
-        for (int i = 0; i < enemiesPerWave; i++)
-        {
-            SpawnEnemy();
-            yield return new WaitForSeconds(timeBetweenSpawns);
-        }
+        timeBetweenSpawns = newSettings.TimeBetweenSpawns;
+        enemiesPerWave = newSettings.EnemiesPerWave;
     }
 
-    private void SpawnEnemy()
+    // Démarrer le spawn continu des ennemis
+    public void StartContinuousSpawn()
     {
-        Vector2 circlePos = Random.insideUnitCircle.normalized * spawnRadius;
-        Vector3 spawnPos = new Vector3(circlePos.x, 0, circlePos.y) + target.position;
+        isSpawning = true;
+    }
 
-        GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-        enemy.GetComponent<Enemy>().Initialize(target);
+    // Arrêter le spawn continu des ennemis
+    public void StopContinuousSpawn()
+    {
+        isSpawning = false;
     }
 }
