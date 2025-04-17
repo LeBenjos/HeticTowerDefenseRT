@@ -12,6 +12,7 @@ public class PlaceTower : MonoBehaviour
     private ARRaycastManager raycastManager;
     private bool canPlace = true;
     public Button startButton;
+    public EnemySpawner enemySpawner;
 
     static readonly List<ARRaycastHit> hits = new();
 
@@ -56,6 +57,7 @@ public class PlaceTower : MonoBehaviour
     public void LockPlacement()
     {
         canPlace = false;
+        enemySpawner.SetTarget(placedTower.transform);
     }
 
     public GameObject GetPlacedTower()
