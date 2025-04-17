@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private int hp = 10;
     private Transform target;
     private EnemyPool pool;
     private Animator animator;
@@ -16,10 +17,11 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void Initialize(Transform target, EnemyPool pool)
+    public void Initialize(Transform target, EnemyPool pool, int hp)
     {
         this.target = target;
         this.pool = pool;
+        this.hp = hp;
 
         SetState(EnemyState.Spawning);
     }
@@ -38,6 +40,16 @@ public class Enemy : MonoBehaviour
             case EnemyState.Moving:
                 animator.Play("EnemyRun");
                 break;
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        hp -= damage;
+        if (hp <= 0)
+        {
+            pool.ReturnEnemy(gameObject);
+            GameManager.Instance.AddKill();
         }
     }
 

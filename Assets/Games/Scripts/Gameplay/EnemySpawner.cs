@@ -50,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemy = enemyPool.GetEnemy();
         enemy.transform.SetPositionAndRotation(spawnPos, Quaternion.identity);
         enemy.SetActive(true);
-        enemy.GetComponent<Enemy>().Initialize(target, enemyPool);
+        enemy.GetComponent<Enemy>().Initialize(target, enemyPool, 10); // TODO Modifier l'assignation des hp
     }
 
     public void SetTarget(Transform newTarget)

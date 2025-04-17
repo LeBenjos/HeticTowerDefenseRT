@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ReferenceImageLibrary
+  m_EditorClassIdentifier: 
+  m_GuidLow: 4743231807143439396
+  m_GuidHigh: 10296920554564250535
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 4680055214406577032
+      m_GuidHigh: 1365947975535577748
+    m_SerializedTextureGuid:
+      m_GuidLow: 7223122180033180176
+      m_GuidHigh: 16418565577374345114
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: canon
+    m_Texture: {fileID: 2800000, guid: 5e1f7210af5a643d9aa7da406776dae3, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4836797653379756955
+      m_GuidHigh: 2152742108389209783
+    m_SerializedTextureGuid:
+      m_GuidLow: 14125337800734834311
+      m_GuidHigh: 3213884396469586697
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: spike
+    m_Texture: {fileID: 2800000, guid: f9327e8747e3c407098bbda8d4029a2c, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4745202697977476098
+      m_GuidHigh: 958680255390569891
+    m_SerializedTextureGuid:
+      m_GuidLow: 307312281188126880
+      m_GuidHigh: 12912636871262057960
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: barril
+    m_Texture: {fileID: 2800000, guid: 3b5550a0cae40443e8b52f01d2e632b3, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5194020962154494426
+      m_GuidHigh: 11180685920827042701
+    m_SerializedTextureGuid:
+      m_GuidLow: 17591482067436737873
+      m_GuidHigh: 12186857493068818313
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: tesla
+    m_Texture: {fileID: 2800000, guid: 963895517fbcf42189a7ac3a526a20a9, type: 3}
