@@ -1202,6 +1202,8 @@ GameObject:
   - component: {fileID: 1346192603}
   - component: {fileID: 1346192602}
   - component: {fileID: 1346192601}
+  - component: {fileID: 1346192605}
+  - component: {fileID: 1346192606}
   m_Layer: 0
   m_Name: XR Origin (Mobile AR)
   m_TagString: Untagged
@@ -1290,6 +1292,42 @@ MonoBehaviour:
   m_CameraFloorOffsetObject: {fileID: 727403266}
   m_RequestedTrackingOriginMode: 1
   m_CameraYOffset: 0
+--- !u!114 &1346192605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346192599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3989c389e79b4e309c1650bd8730f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsToSpawn:
+  - {fileID: 705174144657987526, guid: 0840abbb46519472c84d41b4f49fe106, type: 3}
+  - {fileID: 8944432005279245036, guid: 922d238e9f8ad4c0586f765ef2a1f7e2, type: 3}
+  - {fileID: 8944432005279245036, guid: 6e0fb6c6a371941f88a729a1161cf4d0, type: 3}
+  - {fileID: 76413292082449480, guid: 92d222a8d7af141d6b84238d8619b460, type: 3}
+--- !u!114 &1346192606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346192599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dea56a9eaadd1c439095de4f9a371cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <trackablesChanged>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SerializedLibrary: {fileID: 11400000, guid: a9071fb1363ea428aab38732f48f799b,
+    type: 2}
+  m_MaxNumberOfMovingImages: 4
+  m_TrackedImagePrefab: {fileID: 0}
 --- !u!1 &1419464924
 GameObject:
   m_ObjectHideFlags: 0

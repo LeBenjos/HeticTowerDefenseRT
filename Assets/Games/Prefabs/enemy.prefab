@@ -9,12 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 958259545910907230}
+  - component: {fileID: 3997531387980078676}
+  - component: {fileID: -1423680381005344744}
   - component: {fileID: -8681530562189824875}
   - component: {fileID: 6613206326640336463}
   - component: {fileID: 5795163413695635016}
   m_Layer: 0
   m_Name: enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,22 +37,8 @@ Transform:
   - {fileID: 6182998187235682449}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8681530562189824875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223384946905140660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777d19e7cf4d9426898c92d104808da1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.5
-  dispawnDistance: 0.1
---- !u!136 &6613206326640336463
-CapsuleCollider:
+--- !u!65 &3997531387980078676
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -67,12 +55,10 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5795163413695635016
+  serializedVersion: 3
+  m_Size: {x: 1.14, y: 1.41, z: 1}
+  m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!114 &-1423680381005344744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,10 +67,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1223384946905140660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 944952d2deede46f39f8532f3e7a6334, type: 3}
+  m_Script: {fileID: 11500000, guid: 777d19e7cf4d9426898c92d104808da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  speed: 0.5
+  dispawnDistance: 0.1
 --- !u!1 &2210308353982452528
 GameObject:
   m_ObjectHideFlags: 0
