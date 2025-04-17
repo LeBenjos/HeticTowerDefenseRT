@@ -28,13 +28,13 @@ public class EnemyPool : MonoBehaviour
             return extra;
         }
 
-        Debug.Log("Get enemy from pool");
+        // Debug.Log("Get enemy from pool");
         return pool.Dequeue();
     }
 
     public void ReturnEnemy(GameObject enemy)
     {
-        Debug.Log("Return enemy to pool");
+        // Debug.Log("Return enemy to pool");
         enemy.SetActive(false);
         pool.Enqueue(enemy);
     }
