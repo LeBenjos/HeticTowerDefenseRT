@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {   
-    private int hp;
+    [SerializeField] private int hp = 10;
     private Transform target;
     private EnemyPool pool;
     [SerializeField] private float speed = 0.5f;

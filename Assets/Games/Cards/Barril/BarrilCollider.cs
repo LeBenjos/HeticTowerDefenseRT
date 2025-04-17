@@ -11,7 +11,6 @@ public class ExplosionBaril : MonoBehaviour
         
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Touché");
             Exploser();
         }
     }
@@ -30,8 +29,7 @@ public class ExplosionBaril : MonoBehaviour
             Enemy enemy = nearbyObject.GetComponent<Enemy>();
             if (enemy != null)
             {   
-                Debug.Log("Mechant");
-                enemy.TakeDamage(10);
+                enemy.TakeDamage(15);
             }
         }
 
