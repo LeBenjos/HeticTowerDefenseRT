@@ -55,12 +55,14 @@ public abstract class EnemyBase : MonoBehaviour
                 animator.Play("EnemySpawn");
                 transform.LookAt(target.position);
                 break;
-
             case EnemyState.Moving:
                 animator.Play("EnemyRun");
                 break;
             case EnemyState.Idle:
                 animator.Play("EnemyDance");
+                break;
+            case EnemyState.Dead:
+                animator.Play("EnemyDeath");
                 break;
         }
     }
@@ -70,7 +72,7 @@ public abstract class EnemyBase : MonoBehaviour
         currentHp -= damage;
         if (currentHp <= 0)
         {
-            pool.ReturnEnemy(gameObject);
+            SetState(EnemyState.Dead);
             GameManager.Instance.AddKill();
         }
     }
@@ -91,6 +93,11 @@ public abstract class EnemyBase : MonoBehaviour
     public void OnSpawnAnimationFinished()
     {
         SetState(EnemyState.Moving);
+    }
+
+    public void OnDeathAnimationFinished()
+    {
+        pool.ReturnEnemy(gameObject);
     }
 
     public void OnTriggerEnter(Collider other)
