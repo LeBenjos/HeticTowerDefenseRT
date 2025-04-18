@@ -1901,7 +1901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPool: {fileID: 1754846277}
   spawnRadius: 3
-  bossSpawnChance: 0.05
+  bossSpawnChance: 0.01
 --- !u!1 &1945187350
 GameObject:
   m_ObjectHideFlags: 0
