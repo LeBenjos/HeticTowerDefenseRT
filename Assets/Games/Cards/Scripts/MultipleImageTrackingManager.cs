@@ -58,15 +58,17 @@
 
         private void UpdateTrackedImage(ARTrackedImage trackedImage)
         {
-            if (trackedImage == null) return;
-
-            GameObject arObject = _arObjects[trackedImage.referenceImage.name];
-
-            if (trackedImage.trackingState == TrackingState.Tracking)
+            if (trackedImage == null || trackedImage.referenceImage == null || string.IsNullOrEmpty(trackedImage.referenceImage.name)) return;
+            
+            if (_arObjects.TryGetValue(trackedImage.referenceImage.name, out GameObject arObject))
             {
                 arObject.SetActive(true);
                 arObject.transform.position = trackedImage.transform.position;
                 arObject.transform.rotation = trackedImage.transform.rotation;
+            }
+            else
+            {
+                Debug.LogWarning($"AR object not found for tracked image: {trackedImage.referenceImage.name}");
             }
            
         }
