@@ -7,7 +7,7 @@ public class EnemyMinion : EnemyBase
         base.Awake();
         maxHp = 10;
         currentHp = 10;
-        speed = 0.5f;
-        despawnDistance = 0.1f;
+        speed = 0.05f;
+        despawnDistance = 0.05f;
     }
 }

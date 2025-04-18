@@ -7,7 +7,7 @@ public class EnemyBoss : EnemyBase
         base.Awake();
         maxHp = 50;
         currentHp = 50;
-        speed = 0.1f;
+        speed = 0.001f;
         despawnDistance = 0.05f;
     }
 }
