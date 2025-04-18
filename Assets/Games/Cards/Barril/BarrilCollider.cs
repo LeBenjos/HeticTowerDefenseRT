@@ -26,8 +26,7 @@ public class ExplosionBaril : MonoBehaviour
 
         foreach (Collider nearbyObject in colliders)
         {
-            EnemyBase enemy = nearbyObject.GetComponent<EnemyBase>();
-            if (enemy != null)
+            if (nearbyObject.TryGetComponent<EnemyBase>(out var enemy))
             {
                 enemy.TakeDamage(15);
             }
