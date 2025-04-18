@@ -6,12 +6,12 @@ public class SpikeCollision : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Spike(other.gameObject);
+            Spike(other.GetComponent<EnemyBase>());
         }
     }
 
-    void Spike(GameObject enemy)
+    void Spike(EnemyBase enemy)
     {
-        Destroy(enemy);
+        enemy.TakeDamage(15);
     }
 }
