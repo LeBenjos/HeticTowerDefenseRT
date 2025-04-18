@@ -3,19 +3,29 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private EnemyPool enemyPool;
-    private Transform target;
     [SerializeField] private float spawnRadius = 3f;
+    [SerializeField] private float bossSpawnChance = 0.01f;
 
-    private float timeBetweenSpawns;  // Temps entre chaque spawn
-    private int enemiesPerWave;       // Nombre d'ennemis à faire apparaître à chaque fois
-    private float spawnTimer;         // Timer pour gérer le délai de spawn
-    private bool isSpawning = false;  // Booléen pour contrôler si les ennemis sont en train de spawner
+    private Transform target;
+    private float timeBetweenSpawns;
+    private int enemiesPerWave;
+    private float spawnTimer;
+    private bool isSpawning = false;
 
     void Start()
     {
-        spawnTimer = 0f;  // Initialiser le timer à 0
+        spawnTimer = 0f;
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnGameOver += StopContinuousSpawn;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameOver -= StopContinuousSpawn;
     }
 
     void Update()
@@ -23,59 +33,60 @@ public class EnemySpawner : MonoBehaviour
         if (!isSpawning)
             return;
 
-        // Si le timer est à 0, il est temps de spawn les ennemis
         if (spawnTimer <= 0f)
         {
-            SpawnEnemies();  // Spawn les ennemis
-            spawnTimer = timeBetweenSpawns;  // Réinitialiser le timer pour le prochain spawn
+            SpawnEnemies();
+            spawnTimer = timeBetweenSpawns;
         }
         else
         {
-            spawnTimer -= Time.deltaTime;  // Réduire le timer à chaque frame
+            spawnTimer -= Time.deltaTime;
         }
     }
 
-    // Faire apparaître les ennemis
     private void SpawnEnemies()
     {
-        for (int i = 0; i < enemiesPerWave; i++)  // Spawn plusieurs ennemis par vague
+        for (int i = 0; i < enemiesPerWave; i++)
         {
             SpawnEnemy();
         }
     }
 
-    // Faire apparaître un ennemi individuel
     private void SpawnEnemy()
     {
         Vector2 circlePos = Random.insideUnitCircle.normalized * spawnRadius;
         Vector3 spawnPos = new Vector3(circlePos.x, 0, circlePos.y) + target.position;
 
-        GameObject enemy = enemyPool.GetEnemy();
+        // Choisir le type à spawn
+        EnemyType typeToSpawn = Random.value < bossSpawnChance ? EnemyType.Boss : EnemyType.Minion;
+
+        GameObject enemy = enemyPool.GetEnemy(typeToSpawn);
+        if (enemy == null) return;
+
         enemy.transform.SetPositionAndRotation(spawnPos, Quaternion.identity);
         enemy.SetActive(true);
-        enemy.GetComponent<Enemy>().Initialize(target, enemyPool, 10); // On passe le pool pour pouvoir se relâcher ensuite
+
+        EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
+        enemyBase.Initialize(target, enemyPool);
     }
 
-    // Définir la cible des ennemis (la position de la tour)
+
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
     }
 
-    // Mettre à jour les paramètres de spawn (temps entre chaque spawn, nombre d'ennemis)
     public void UpdateSpawnSettings(SpawnSettings newSettings)
     {
         timeBetweenSpawns = newSettings.TimeBetweenSpawns;
         enemiesPerWave = newSettings.EnemiesPerWave;
     }
 
-    // Démarrer le spawn continu des ennemis
     public void StartContinuousSpawn()
     {
         isSpawning = true;
     }
 
-    // Arrêter le spawn continu des ennemis
     public void StopContinuousSpawn()
     {
         isSpawning = false;

@@ -1,41 +1,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyPool : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private int poolSize = 20;
+    [System.Serializable]
+    public struct EnemyPrefabEntry
+    {
+        public EnemyType type;
+        public GameObject prefab;
+    }
 
-    private readonly Queue<GameObject> pool = new();
+    [SerializeField] private List<EnemyPrefabEntry> enemyPrefabs;
+    [SerializeField] private int initialPoolSize = 10;
+
+    private readonly Dictionary<EnemyType, Queue<GameObject>> enemyPools = new();
+    private readonly Dictionary<EnemyType, GameObject> prefabLookup = new();
 
     void Awake()
     {
-        for (int i = 0; i < poolSize; i++)
+        foreach (var entry in enemyPrefabs)
         {
-            GameObject enemy = Instantiate(enemyPrefab);
-            enemy.SetActive(false);
-            pool.Enqueue(enemy);
+            prefabLookup[entry.type] = entry.prefab;
+            enemyPools[entry.type] = new Queue<GameObject>();
+
+            for (int i = 0; i < initialPoolSize; i++)
+            {
+                GameObject enemy = Instantiate(entry.prefab);
+                enemy.SetActive(false);
+                enemyPools[entry.type].Enqueue(enemy);
+            }
         }
     }
 
-    public GameObject GetEnemy()
+    public GameObject GetEnemy(EnemyType type)
     {
-        if (pool.Count == 0)
+        if (!enemyPools.ContainsKey(type))
         {
-            // Optionnel : agrandir le pool
-            GameObject extra = Instantiate(enemyPrefab);
-            extra.SetActive(false);
-            return extra;
+            Debug.LogWarning($"No pool found for enemy type {type}");
+            return null;
         }
 
-        // Debug.Log("Get enemy from pool");
-        return pool.Dequeue();
+        if (enemyPools[type].Count == 0)
+        {
+            GameObject newEnemy = Instantiate(prefabLookup[type]);
+            return newEnemy;
+        }
+
+        GameObject enemy = enemyPools[type].Dequeue();
+        enemy.SetActive(true);
+        return enemy;
     }
 
     public void ReturnEnemy(GameObject enemy)
     {
-        // Debug.Log("Return enemy to pool");
         enemy.SetActive(false);
-        pool.Enqueue(enemy);
+
+        EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
+        if (enemyBase != null)
+        {
+            EnemyType type = enemyBase.EnemyType;
+            enemyPools[type].Enqueue(enemy);
+        }
+        else
+        {
+            Debug.LogWarning("Returned object doesn't have EnemyBase!");
+        }
     }
 }

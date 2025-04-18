@@ -8,7 +8,7 @@ public class ExplosionBaril : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+
         if (other.CompareTag("Enemy"))
         {
             Exploser();
@@ -25,20 +25,20 @@ public class ExplosionBaril : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, radiusExplosion);
 
         foreach (Collider nearbyObject in colliders)
-        {   
-            Enemy enemy = nearbyObject.GetComponent<Enemy>();
+        {
+            EnemyBase enemy = nearbyObject.GetComponent<EnemyBase>();
             if (enemy != null)
-            {   
+            {
                 enemy.TakeDamage(15);
             }
         }
 
         Destroy(gameObject);
     }
-    
+
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red; 
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radiusExplosion);
     }
 }
