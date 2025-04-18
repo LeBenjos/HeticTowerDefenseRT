@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 194716437}
   - component: {fileID: 194716438}
   - component: {fileID: 194716439}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: AR Session
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -989,7 +989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabsToSpawn:
   - {fileID: 705174144657987526, guid: 0840abbb46519472c84d41b4f49fe106, type: 3}
-  - {fileID: 8944432005279245036, guid: 922d238e9f8ad4c0586f765ef2a1f7e2, type: 3}
+  - {fileID: 6190145261750066576, guid: a380488c3842941cc9e60bad7e78af8b, type: 3}
   - {fileID: 4758183942643106403, guid: 6e0fb6c6a371941f88a729a1161cf4d0, type: 3}
   - {fileID: 76413292082449480, guid: 92d222a8d7af141d6b84238d8619b460, type: 3}
 --- !u!114 &1346192606
