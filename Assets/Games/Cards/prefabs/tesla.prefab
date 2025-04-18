@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1525436884558201371}
   - component: {fileID: 6152112985080031170}
   - component: {fileID: 7755381977908768676}
-  - component: {fileID: 7068094203738553549}
   m_Layer: 0
   m_Name: tesla
   m_TagString: Untagged
@@ -88,27 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7068094203738553549
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 76413292082449480}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3651820786578807958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -200,7 +178,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0a3f6ab7a1b1940b5bfa5d0f3e630477,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 426640241189864311}
   m_SourcePrefab: {fileID: 100100000, guid: 0a3f6ab7a1b1940b5bfa5d0f3e630477, type: 3}
 --- !u!4 &3830143074220620669 stripped
 Transform:
@@ -208,3 +190,23 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3651820786578807958}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4498170762324599239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0a3f6ab7a1b1940b5bfa5d0f3e630477,
+    type: 3}
+  m_PrefabInstance: {fileID: 3651820786578807958}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &426640241189864311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4498170762324599239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340a22cc86eccf240ab5bedf2eb1ca5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowPercentage: 10
+  radius: 0.5
