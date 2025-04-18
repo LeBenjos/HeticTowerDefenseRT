@@ -4,6 +4,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlaceTower : MonoBehaviour
 {
@@ -36,6 +37,9 @@ public class PlaceTower : MonoBehaviour
         if (touch.press.wasPressedThisFrame)
         {
             Vector2 touchPosition = touch.position.ReadValue();
+            
+            if (EventSystem.current.IsPointerOverGameObject(touch.touchId.ReadValue()))
+                return;
 
             if (raycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon))
             {
