@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
 
         gameOverScreen.SetActive(true);
-        timeText.text = $"Time Survived: {gameTime:F1} seconds";
+        timeText.text = $"Time Survived: {gameTime:F1}s";
         killText.text = $"Enemies Killed: {enemyKillCount}";
 
         OnGameOver?.Invoke();
