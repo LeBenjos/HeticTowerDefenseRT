@@ -9,5 +9,6 @@ public class EnemyBoss : EnemyBase
         currentHp = 50;
         speed = 0.001f;
         despawnDistance = 0.05f;
+        damageAmount = 50;
     }
 }

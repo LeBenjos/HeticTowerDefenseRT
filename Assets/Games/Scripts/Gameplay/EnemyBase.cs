@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public abstract class EnemyBase : MonoBehaviour
 {
     public abstract EnemyType EnemyType { get; }
@@ -7,6 +8,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected Transform target;
     protected EnemyPool pool;
     protected Animator animator;
+    protected int damageAmount = 1;
 
     protected int maxHp = 1;
     protected int currentHp = 1;
@@ -71,5 +73,16 @@ public abstract class EnemyBase : MonoBehaviour
     public void OnSpawnAnimationFinished()
     {
         SetState(EnemyState.Moving);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Tower"))
+        {
+            if (other.TryGetComponent<TowerHealth>(out var tower))
+            {
+                tower.TakeDamage(damageAmount);
+            }
+        }
     }
 }

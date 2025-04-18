@@ -9,5 +9,6 @@ public class EnemyMinion : EnemyBase
         currentHp = 10;
         speed = 0.05f;
         despawnDistance = 0.05f;
+        damageAmount = 10;
     }
 }
