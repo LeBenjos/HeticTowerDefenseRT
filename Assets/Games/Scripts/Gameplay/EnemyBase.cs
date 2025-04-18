@@ -30,6 +30,21 @@ public abstract class EnemyBase : MonoBehaviour
         SetState(EnemyState.Spawning);
     }
 
+    protected virtual void OnEnable()
+    {
+        GameManager.OnGameOver += HandleGameOver;
+    }
+
+    protected virtual void OnDisable()
+    {
+        GameManager.OnGameOver -= HandleGameOver;
+    }
+
+    protected virtual void HandleGameOver()
+    {
+        SetState(EnemyState.Idle);
+    }
+
     protected virtual void SetState(EnemyState newState)
     {
         currentState = newState;
@@ -43,6 +58,9 @@ public abstract class EnemyBase : MonoBehaviour
 
             case EnemyState.Moving:
                 animator.Play("EnemyRun");
+                break;
+            case EnemyState.Idle:
+                animator.Play("EnemyDance");
                 break;
         }
     }

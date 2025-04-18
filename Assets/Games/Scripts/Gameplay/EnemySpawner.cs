@@ -18,6 +18,16 @@ public class EnemySpawner : MonoBehaviour
         spawnTimer = 0f;
     }
 
+    private void OnEnable()
+    {
+        GameManager.OnGameOver += StopContinuousSpawn;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameOver -= StopContinuousSpawn;
+    }
+
     void Update()
     {
         if (!isSpawning)

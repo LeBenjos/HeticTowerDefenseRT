@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
+    public static event Action OnGameOver;
     public PlaceTower towerPlacer;
     public Button startButton;
     public EnemySpawner enemySpawner;
-
     private readonly SpawnSettings currentSpawnSettings = new();
 
     [Header("Game Settings")]
@@ -83,7 +84,7 @@ public class GameManager : MonoBehaviour
         timeText.text = $"Time Survived: {gameTime:F1} seconds";
         killText.text = $"Enemies Killed: {enemyKillCount}";
 
-        enemySpawner.StopContinuousSpawn();
+        OnGameOver?.Invoke();
     }
 
     public void RestartGame()

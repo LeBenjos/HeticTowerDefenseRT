@@ -1,5 +1,6 @@
 public enum EnemyState
 {
     Spawning,
-    Moving
+    Moving,
+    Idle
 }
