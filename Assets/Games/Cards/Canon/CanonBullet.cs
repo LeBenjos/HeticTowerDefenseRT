@@ -2,19 +2,22 @@ using UnityEngine;
 
 public class CanonBullet : MonoBehaviour
 {
-    public int speed = 1;
-
+    public float speed = 10f;
     private Rigidbody rb;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Vector3 targetDirection;
+
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+        if (rb != null && targetDirection != Vector3.zero)
+        {
+            rb.linearVelocity = targetDirection.normalized * speed;
+        }
+        Destroy(gameObject, 3f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetTarget(Vector3 target)
     {
-        rb.linearVelocity = transform.forward * speed;
-        Destroy(gameObject, 3f);
+        targetDirection = (target - transform.position).normalized;
     }
 }

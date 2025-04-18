@@ -34,37 +34,28 @@ public class CanonCollider : MonoBehaviour
 
         return closestEnemy;
     }
-    private void ShootBullet()
+    private void ShootBullet(Collider enemy)
     {   
-        fireCooldown -= Time.deltaTime;
+        currentCooldown -= Time.deltaTime;
 
-        if (fireCooldown <= 0)
+        if (currentCooldown <= 0 && enemy != null)
         {
-        // GameObject bulletObject = Instantiate(canon, spawnPoint.transform.position, spawnPoint.transform.rotation);
-        // Rigidbody bulletRigidBody = bulletObject.GetComponent<Rigidbody>();
-        // bulletRigidBody.AddForce(bulletRigidBody.transform.forward * 10);
-        // Destroy(bulletObject, 0.1f);
-            Instantiate(canonBullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
-            fireCooldown = 3;
-        };
-
-
-
+            GameObject bulletObj = Instantiate(canonBullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            CanonBullet bullet = bulletObj.GetComponent<CanonBullet>();
+            if (bullet != null)
+            {
+                bullet.SetTarget(enemy.transform.position);
+            }
+            currentCooldown = fireCooldown;
+        }
     }
+
     
     void Update()
     {
-        ShootBullet();
-        Collider isEnemy = DetectEnemy();
-        if(isEnemy != null)
-        {
-            Enemy enemy = isEnemy.GetComponent<Enemy>();
-            Vector3 enemyPosition = enemy.transform.position;
-            // if (enemy != null)
-            // {
-            //     enemy.TakeDamage(15);
-            // }
-        }
+            Collider isEnemy = DetectEnemy();
+            ShootBullet(isEnemy);
+
     }
     private void OnDrawGizmos()
     {
