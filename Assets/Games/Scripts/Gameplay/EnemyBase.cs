@@ -81,7 +81,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (target == null || currentState != EnemyState.Moving) return;
 
-        transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * speed);
+        transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * (speed * 0.01f));
         transform.LookAt(target.position);
 
         if (Vector3.Distance(transform.position, target.position) < despawnDistance)

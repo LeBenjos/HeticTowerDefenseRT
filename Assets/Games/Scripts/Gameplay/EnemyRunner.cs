@@ -7,10 +7,10 @@ public class EnemyRunner : EnemyBase
     protected override void Awake()
     {
         base.Awake();
-        maxHp = 15;
-        currentHp = 15;
-        speed = 0.15f;
+        maxHp = 30;
+        currentHp = 30;
+        speed = 15f;
+        damageAmount = 15;
         despawnDistance = 0.05f;
-        damageAmount = 10;
     }
 }

@@ -7,6 +7,8 @@ public class BarrilTrap : TrapBase
     public float radiusExplosion = 0.4f;
     // public GameObject explosionEffectPrefab; // (Optionnel pour un effet visuel)
 
+    protected int damageAmount = 250;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
@@ -29,7 +31,7 @@ public class BarrilTrap : TrapBase
             EnemyBase enemy = nearbyObject.GetComponent<EnemyBase>();
             if (enemy != null)
             {
-                enemy.TakeDamage(15);
+                enemy.TakeDamage(damageAmount);
             }
         }
 

@@ -1,5 +1,9 @@
 TODO :
-0. Add runner
-1. Equilibrage
-4. Cartes
-5. Toucher le zombie pour le faire tomber
+- Equilibrage
+- Cartes
+- Animation suivant les pv ?
+- Barril
+- Spike
+- Cannon
+- Tesla
+- Toucher le zombie pour le faire tomber

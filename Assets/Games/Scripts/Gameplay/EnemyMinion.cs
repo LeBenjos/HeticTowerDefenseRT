@@ -5,10 +5,10 @@ public class EnemyMinion : EnemyBase
     protected override void Awake()
     {
         base.Awake();
-        maxHp = 10;
-        currentHp = 10;
-        speed = 0.05f;
+        maxHp = 50;
+        currentHp = 50;
+        speed = 5f;
+        damageAmount = 25;
         despawnDistance = 0.05f;
-        damageAmount = 10;
     }
 }
