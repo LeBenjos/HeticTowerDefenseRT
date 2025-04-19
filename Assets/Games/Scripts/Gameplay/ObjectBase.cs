@@ -5,6 +5,7 @@ public class ObjectBase : MonoBehaviour
     private PlaceTower placeTower;
     private Transform towerTransform;
 
+    [System.Obsolete]
     void Start()
     {
         placeTower = FindObjectOfType<PlaceTower>();
