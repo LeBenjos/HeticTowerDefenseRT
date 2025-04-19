@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Barril : ObjectBase 
+public class BarrilTrap : TrapBase
 
 {
     public float forceExplosion = 700f;
@@ -25,20 +25,20 @@ public class Barril : ObjectBase
         Collider[] colliders = Physics.OverlapSphere(transform.position, radiusExplosion);
 
         foreach (Collider nearbyObject in colliders)
-        {   
+        {
             EnemyBase enemy = nearbyObject.GetComponent<EnemyBase>();
             if (enemy != null)
-            {   
+            {
                 enemy.TakeDamage(15);
             }
         }
 
         Destroy(gameObject);
     }
-    
+
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red; 
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radiusExplosion);
     }
 }

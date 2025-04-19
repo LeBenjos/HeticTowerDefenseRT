@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObjectBase : MonoBehaviour
+public class TrapBase : MonoBehaviour
 {
     private PlaceTower placeTower;
     private Transform towerTransform;

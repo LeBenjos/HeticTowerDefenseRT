@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CanonCollider : ObjectBase
+public class CanonTrap : TrapBase
 {
     public GameObject canonBullet;
     public GameObject bulletSpawn;
