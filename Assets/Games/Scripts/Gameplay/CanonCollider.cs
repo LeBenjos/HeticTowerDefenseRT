@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CanonCollider : MonoBehaviour
+public class CanonCollider : ObjectBase
 {
     public GameObject canonBullet;
     public GameObject bulletSpawn;
@@ -41,7 +41,7 @@ public class CanonCollider : MonoBehaviour
 
 
     private void ShootBullet(Collider enemy)
-    {   
+    {
         currentCooldown -= Time.deltaTime;
 
         if (currentCooldown <= 0 && enemy != null)
@@ -56,14 +56,14 @@ public class CanonCollider : MonoBehaviour
         }
     }
 
-    
+
     void Update()
     {
-            Collider isEnemy = DetectEnemy();
-            if(isEnemy != null)
-            {
-                ShootBullet(isEnemy);
-            }
+        Collider isEnemy = DetectEnemy();
+        if (isEnemy != null)
+        {
+            ShootBullet(isEnemy);
+        }
 
     }
     private void OnDrawGizmos()
@@ -72,7 +72,7 @@ public class CanonCollider : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
 
         Gizmos.color = Color.red;
-        int segments = 30; 
+        int segments = 30;
         float halfAngle = visionAngle / 2f;
 
         for (int i = 0; i <= segments; i++)
