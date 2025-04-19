@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpikeCollision : MonoBehaviour
+public class SpikeCollision : ObjectBase
 {
     private void OnTriggerEnter(Collider other)
     {
