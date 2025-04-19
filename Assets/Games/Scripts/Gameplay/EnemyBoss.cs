@@ -5,10 +5,10 @@ public class EnemyBoss : EnemyBase
     protected override void Awake()
     {
         base.Awake();
-        maxHp = 50;
-        currentHp = 50;
-        speed = 0.03f;
-        despawnDistance = 0.05f;
+        maxHp = 150;
+        currentHp = 150;
+        speed = 3f;
         damageAmount = 100;
+        despawnDistance = 0.05f;
     }
 }
