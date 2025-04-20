@@ -1,1 +1,0 @@
-# Modèles 3D, textures, VFX
