@@ -59,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
 
         EnemyType typeToSpawn = GetRandomEnemyType();
 
-        GameObject enemy = enemyPool.GetEnemy(typeToSpawn);
+        GameObject enemy = enemyPool.Get(typeToSpawn);
         if (enemy == null) return;
 
         enemy.transform.SetPositionAndRotation(spawnPos, Quaternion.identity);

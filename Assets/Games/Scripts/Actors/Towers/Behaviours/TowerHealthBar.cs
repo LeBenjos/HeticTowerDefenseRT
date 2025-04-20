@@ -6,10 +6,7 @@ public class TowerHealthBar : MonoBehaviour
 {
     [SerializeField] private Slider healthBar;
     [SerializeField] private float lerpSpeed = 5f;
-
     private int targetHealth;
-    private int maxHealth;
-
     void Start()
     {
         var tower = GetComponent<TowerBase>();
@@ -34,7 +31,6 @@ public class TowerHealthBar : MonoBehaviour
     private void UpdateHealth(int newHealth, int max)
     {
         targetHealth = newHealth;
-        maxHealth = max;
 
         if (healthBar != null)
         {

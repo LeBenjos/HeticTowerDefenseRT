@@ -5,10 +5,9 @@ public class TrapBase : MonoBehaviour
     private PlaceTower placeTower;
     private Transform towerTransform;
 
-    [System.Obsolete]
     void Start()
     {
-        placeTower = FindObjectOfType<PlaceTower>();
+        placeTower = FindFirstObjectByType<PlaceTower>();
         TryGetTowerTransform();
     }
 

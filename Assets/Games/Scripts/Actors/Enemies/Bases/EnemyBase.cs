@@ -17,6 +17,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected int damageAmount = 1;
 
     protected EnemyState currentState;
+    public EnemyState CurrentState => currentState;
     protected float baseSpeed;
     protected float currentSpeed;
 
@@ -52,7 +53,7 @@ public abstract class EnemyBase : MonoBehaviour
 
         if (Vector3.Distance(transform.position, target.position) < despawnDistance)
         {
-            pool.ReturnEnemy(gameObject);
+            pool.Return(gameObject);
         }
     }
 
@@ -145,7 +146,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public void OnSpawnAnimationFinished() => SetState(EnemyState.Moving);
     public void OnStunAnimationFinished() => SetState(EnemyState.Moving);
-    public void OnDeathAnimationFinished() => pool.ReturnEnemy(gameObject);
+    public void OnDeathAnimationFinished() => pool.Return(gameObject);
 
     #endregion
 

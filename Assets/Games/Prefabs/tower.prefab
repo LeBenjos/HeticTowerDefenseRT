@@ -150,6 +150,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2456448109858456804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6952210530159587147}
+  m_Layer: 0
+  m_Name: TowerShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6952210530159587147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456448109858456804}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.619, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1032453797360632579}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3006511997887027861
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +422,7 @@ GameObject:
   - component: {fileID: 5796878039766160319}
   - component: {fileID: -5888499943186910595}
   - component: {fileID: 6952733039249779239}
+  - component: {fileID: -820551259340384607}
   m_Layer: 0
   m_Name: tower
   m_TagString: Tower
@@ -413,6 +445,7 @@ Transform:
   m_Children:
   - {fileID: 3485859607810143424}
   - {fileID: 3427196498935999051}
+  - {fileID: 6952210530159587147}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &4563157638413465226
@@ -477,7 +510,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0931fd0d047457d904a9cae2a8b687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
 --- !u!114 &6952733039249779239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +524,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 3899868111844277254}
   lerpSpeed: 5
+--- !u!114 &-820551259340384607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8939007647477176109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be486751a9a9408eb5a695ff3b7167b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRadius: 1.5
+  fireRate: 1
+  shootPoint: {fileID: 6952210530159587147}
 --- !u!1 &8998006553524657639
 GameObject:
   m_ObjectHideFlags: 0
