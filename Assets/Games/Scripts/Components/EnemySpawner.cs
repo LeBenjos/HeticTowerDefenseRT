@@ -7,10 +7,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnRadius = 3f;
     [SerializeField] private float bossSpawnChance = 0.01f;
     [SerializeField] private float runnerSpawnChance = 0.15f;
-
+    [SerializeField] private float timeBetweenSpawns = 2f;
+    [SerializeField] private int enemiesPerWave = 3;
     private Transform target;
-    private float timeBetweenSpawns;
-    private int enemiesPerWave;
     private float spawnTimer;
     private bool isSpawning = false;
 
@@ -93,10 +92,10 @@ public class EnemySpawner : MonoBehaviour
         target = newTarget;
     }
 
-    public void UpdateSpawnSettings(SpawnSettings newSettings)
+    public void UpdateSpawnSettings(float newTimeBetweenSpawns, int newEnemiesPerWave)
     {
-        timeBetweenSpawns = newSettings.TimeBetweenSpawns;
-        enemiesPerWave = newSettings.EnemiesPerWave;
+        timeBetweenSpawns = newTimeBetweenSpawns;
+        enemiesPerWave = newEnemiesPerWave;
     }
 
     public void StartContinuousSpawn()

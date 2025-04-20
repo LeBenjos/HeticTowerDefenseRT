@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-public class TowerHealth : MonoBehaviour
+public class Tower : MonoBehaviour
 {
     private readonly int maxHealth = 1000;
     private int currentHealth;

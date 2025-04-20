@@ -12,20 +12,16 @@ public class ZombieTapDetector : MonoBehaviour
 
     private void Update()
     {
-        if (Touchscreen.current == null || Touchscreen.current.primaryTouch == null)
-            return;
+        if (Touchscreen.current?.primaryTouch == null) return;
 
         if (Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
         {
             Vector2 touchPos = Touchscreen.current.primaryTouch.position.ReadValue();
-
             Ray ray = mainCamera.ScreenPointToRay(touchPos);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+
+            if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.TryGetComponent(out EnemyBase enemy))
             {
-                if (hit.collider.TryGetComponent<EnemyBase>(out var enemy))
-                {
-                    enemy.TakeDamage(50);
-                }
+                enemy.TakeDamage(50);
             }
         }
     }
