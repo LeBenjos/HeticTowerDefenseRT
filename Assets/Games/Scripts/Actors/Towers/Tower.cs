@@ -41,7 +41,7 @@ public class Tower : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         targetHealth = currentHealth;
 
-        Debug.Log("Tower took damage. Current health: " + currentHealth);
+        Debug.Log($"Tower took damage: {amount}. Current health: {currentHealth}/{maxHealth}");
 
         if (currentHealth <= 0)
         {
@@ -51,7 +51,6 @@ public class Tower : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Tower destroyed!");
         GameManager.Instance.TriggerGameOver();
     }
 }

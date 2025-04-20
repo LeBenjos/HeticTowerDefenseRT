@@ -56,8 +56,7 @@ public class EnemyPool : MonoBehaviour
     {
         enemy.SetActive(false);
 
-        EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
-        if (enemyBase != null)
+        if (enemy.TryGetComponent<EnemyBase>(out var enemyBase))
         {
             EnemyType type = enemyBase.EnemyType;
             enemyPools[type].Enqueue(enemy);

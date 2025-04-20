@@ -1725,6 +1725,8 @@ MonoBehaviour:
   spawnRadius: 3
   bossSpawnChance: 0.05
   runnerSpawnChance: 0.15
+  timeBetweenSpawns: 0
+  enemiesPerWave: 0
 --- !u!1 &1945187350
 GameObject:
   m_ObjectHideFlags: 0

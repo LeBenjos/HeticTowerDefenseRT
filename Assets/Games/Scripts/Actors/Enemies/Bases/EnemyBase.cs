@@ -155,7 +155,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (!enabled || currentState == EnemyState.Dead) return;
 
-        if (other.CompareTag("Tower") && other.TryGetComponent(out Tower tower))
+        if (other.CompareTag("Tower") && other.TryGetComponent(out TowerBase tower))
         {
             tower.TakeDamage(damageAmount);
         }

@@ -389,7 +389,8 @@ GameObject:
   - component: {fileID: 1032453797360632579}
   - component: {fileID: 4563157638413465226}
   - component: {fileID: 5796878039766160319}
-  - component: {fileID: -7216270638555124945}
+  - component: {fileID: -5888499943186910595}
+  - component: {fileID: 6952733039249779239}
   m_Layer: 0
   m_Name: tower
   m_TagString: Tower
@@ -464,7 +465,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-7216270638555124945
+--- !u!114 &-5888499943186910595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -473,10 +474,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8939007647477176109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3efe27b4201f24e53bfc63aafff6bc72, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f0931fd0d047457d904a9cae2a8b687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
+--- !u!114 &6952733039249779239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8939007647477176109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e5108ffac604a8b9d3ba57a0dd2150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   healthBar: {fileID: 3899868111844277254}
   lerpSpeed: 5
 --- !u!1 &8998006553524657639
