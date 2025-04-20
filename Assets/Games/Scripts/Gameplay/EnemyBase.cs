@@ -16,6 +16,14 @@ public abstract class EnemyBase : MonoBehaviour
     protected float despawnDistance = 1f;
 
     protected EnemyState currentState;
+    protected float baseSpeed;
+    protected float currentSpeed;
+
+    public virtual void Start()
+    {
+        currentSpeed = speed;
+        baseSpeed = speed;
+    }
 
     protected virtual void Awake()
     {
@@ -86,11 +94,21 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
+    public void ModifySpeed(float percentage)
+    {
+        currentSpeed = baseSpeed * percentage;
+    }
+
+    public void ResetSpeed()
+    {
+        currentSpeed = baseSpeed;
+    }
+
     protected virtual void Update()
     {
         if (target == null || currentState != EnemyState.Moving) return;
 
-        transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * (speed * 0.01f));
+        transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * currentSpeed * 0.01f);
         transform.LookAt(target.position);
 
         if (Vector3.Distance(transform.position, target.position) < despawnDistance)
