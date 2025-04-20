@@ -64,16 +64,25 @@ public abstract class EnemyBase : MonoBehaviour
             case EnemyState.Dead:
                 animator.Play("EnemyDeath");
                 break;
+            case EnemyState.Stunned:
+                animator.Play("EnemyFall");
+                break;
         }
     }
 
     public void TakeDamage(int damage)
     {
+        if (currentState != EnemyState.Moving) return;
+
         currentHp -= damage;
-        if (currentHp <= 0)
+        if (currentHp <= 0 && currentState != EnemyState.Dead)
         {
             SetState(EnemyState.Dead);
             GameManager.Instance.AddKill();
+        }
+        else
+        {
+            SetState(EnemyState.Stunned);
         }
     }
 
@@ -98,6 +107,11 @@ public abstract class EnemyBase : MonoBehaviour
     public void OnDeathAnimationFinished()
     {
         pool.ReturnEnemy(gameObject);
+    }
+
+    public void OnStunAnimationFinished()
+    {
+        SetState(EnemyState.Moving);
     }
 
     public void OnTriggerEnter(Collider other)
