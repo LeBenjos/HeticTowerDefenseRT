@@ -1,5 +1,6 @@
 public enum EnemyType
 {
     Minion,
-    Boss
+    Boss,
+    Runner
 }

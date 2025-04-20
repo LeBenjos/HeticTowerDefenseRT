@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemyPool enemyPool;
     [SerializeField] private float spawnRadius = 3f;
     [SerializeField] private float bossSpawnChance = 0.01f;
+    [SerializeField] private float runnerSpawnChance = 0.15f;
 
     private Transform target;
     private float timeBetweenSpawns;
@@ -57,8 +58,7 @@ public class EnemySpawner : MonoBehaviour
         Vector2 circlePos = Random.insideUnitCircle.normalized * spawnRadius;
         Vector3 spawnPos = new Vector3(circlePos.x, 0, circlePos.y) + target.position;
 
-        // Choisir le type à spawn
-        EnemyType typeToSpawn = Random.value < bossSpawnChance ? EnemyType.Boss : EnemyType.Minion;
+        EnemyType typeToSpawn = GetRandomEnemyType();
 
         GameObject enemy = enemyPool.GetEnemy(typeToSpawn);
         if (enemy == null) return;
@@ -70,6 +70,23 @@ public class EnemySpawner : MonoBehaviour
         enemyBase.Initialize(target, enemyPool);
     }
 
+    private EnemyType GetRandomEnemyType()
+    {
+        float spawnRoll = Random.value;
+
+        if (spawnRoll < bossSpawnChance)
+        {
+            return EnemyType.Boss;
+        }
+        else if (spawnRoll < bossSpawnChance + runnerSpawnChance)
+        {
+            return EnemyType.Runner;
+        }
+        else
+        {
+            return EnemyType.Minion;
+        }
+    }
 
     public void SetTarget(Transform newTarget)
     {
