@@ -14,10 +14,14 @@ public abstract class EnemyBase : MonoBehaviour
     protected int currentHp = 1;
     protected float speed = 1f;
     protected float despawnDistance = 1f;
+    protected float attackCooldown = 1f;
+    public float AttackCooldown => attackCooldown;
     protected int damageAmount = 1;
+    public int DamageAmount => damageAmount;
 
     protected EnemyState currentState;
     public EnemyState CurrentState => currentState;
+    private EnemyState stateBeforeStun = EnemyState.Moving;
     protected float baseSpeed;
     protected float currentSpeed;
 
@@ -69,44 +73,47 @@ public abstract class EnemyBase : MonoBehaviour
         SetState(EnemyState.Spawning);
     }
 
-    protected virtual void SetState(EnemyState newState)
+    public virtual void SetState(EnemyState newState)
     {
         currentState = newState;
 
         switch (newState)
         {
             case EnemyState.Spawning:
-                animator.Play(EnemyAnimationNames.Spawn);
-                transform.LookAt(target.position);
+                OnSpawning();
                 break;
             case EnemyState.Moving:
-                animator.Play(EnemyAnimationNames.Run);
+                OnMoving();
                 break;
             case EnemyState.Idle:
-                animator.Play(EnemyAnimationNames.Dance);
+                OnIdle();
                 break;
             case EnemyState.Dead:
-                animator.Play(EnemyAnimationNames.Death);
+                OnDead();
                 break;
             case EnemyState.Stunned:
-                animator.Play(EnemyAnimationNames.Stumble);
+                OnStunned();
+                break;
+            case EnemyState.Attacking:
+                OnAttacking();
                 break;
         }
     }
 
     public void TakeDamage(int damage)
     {
-        if (currentState != EnemyState.Moving) return;
-
-        currentHp -= damage;
-
-        if (currentHp <= 0 && currentState != EnemyState.Dead)
+        if (currentState == EnemyState.Moving || currentState == EnemyState.Attacking)
         {
-            Die();
-        }
-        else
-        {
-            Stumble();
+            currentHp -= damage;
+
+            if (currentHp <= 0 && currentState != EnemyState.Dead)
+            {
+                Die();
+            }
+            else
+            {
+                Stumble();
+            }
         }
     }
 
@@ -118,12 +125,43 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void Stumble()
     {
+        stateBeforeStun = currentState;
         SetState(EnemyState.Stunned);
     }
 
     protected virtual void HandleGameOver()
     {
         SetState(EnemyState.Idle);
+    }
+
+    #endregion
+
+    #region State Handlers
+
+    protected virtual void OnSpawning()
+    {
+        animator.Play(EnemyAnimationNames.Spawn);
+        transform.LookAt(target.position);
+    }
+    protected virtual void OnMoving()
+    {
+        animator.Play(EnemyAnimationNames.Run);
+    }
+    protected virtual void OnIdle()
+    {
+        animator.Play(EnemyAnimationNames.Dance);
+    }
+    protected virtual void OnDead()
+    {
+        animator.Play(EnemyAnimationNames.Death);
+    }
+    protected virtual void OnStunned()
+    {
+        animator.Play(EnemyAnimationNames.Stumble);
+    }
+    protected virtual void OnAttacking()
+    {
+        animator.Play(EnemyAnimationNames.Attack);
     }
 
     #endregion
@@ -145,22 +183,8 @@ public abstract class EnemyBase : MonoBehaviour
     #region Animation Events
 
     public void OnSpawnAnimationFinished() => SetState(EnemyState.Moving);
-    public void OnStunAnimationFinished() => SetState(EnemyState.Moving);
+    public void OnStunAnimationFinished() => SetState(stateBeforeStun);
     public void OnDeathAnimationFinished() => pool.Return(gameObject);
-
-    #endregion
-
-    #region Collision
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!enabled || currentState == EnemyState.Dead) return;
-
-        if (other.CompareTag("Tower") && other.TryGetComponent(out TowerBase tower))
-        {
-            tower.TakeDamage(damageAmount);
-        }
-    }
 
     #endregion
 }

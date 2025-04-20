@@ -4,5 +4,6 @@ public enum EnemyState
     Moving,
     Idle,
     Dead,
-    Stunned
+    Stunned,
+    Attacking,
 }

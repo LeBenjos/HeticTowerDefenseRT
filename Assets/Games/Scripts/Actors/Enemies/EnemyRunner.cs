@@ -12,5 +12,6 @@ public class EnemyRunner : EnemyBase
         speed = 15f;
         damageAmount = 15;
         despawnDistance = 0.05f;
+        attackCooldown = 1f;
     }
 }

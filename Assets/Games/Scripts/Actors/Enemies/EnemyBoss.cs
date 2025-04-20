@@ -10,5 +10,6 @@ public class EnemyBoss : EnemyBase
         speed = 3f;
         damageAmount = 100;
         despawnDistance = 0.05f;
+        attackCooldown = 7f;
     }
 }
