@@ -10,5 +10,6 @@ public class EnemyMinion : EnemyBase
         speed = 5f;
         damageAmount = 25;
         despawnDistance = 0.05f;
+        attackCooldown = 3f;
     }
 }

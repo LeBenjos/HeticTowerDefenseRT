@@ -404,7 +404,7 @@ Transform:
   m_GameObject: {fileID: 198825121}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 78.470085, y: 14.335177, z: 1.6107771}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -880,7 +880,7 @@ Transform:
   m_GameObject: {fileID: 1004296187}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -381.94272, y: 0.08276812, z: -158.0642}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1674,7 +1674,7 @@ MonoBehaviour:
     prefab: {fileID: 5447861235296962828, guid: 6941b3c88ec46452b85a4c26d6170f18,
       type: 3}
   - type: 2
-    prefab: {fileID: 2511107738597470824, guid: 0eea945ad039742cbb5e88f8369368c1,
+    prefab: {fileID: 9092022880189795626, guid: b5fa0d56897904d548639f07e8a4d3b7,
       type: 3}
   initialPoolSize: 10
 --- !u!1 &1820967408
@@ -2011,79 +2011,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948318285}
   m_CullTransparentMesh: 1
---- !u!1001 &2006163861
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4881464563542632923, guid: 464e2bd84373c4b6bbe87608e7fee891,
-        type: 3}
-      propertyPath: m_Name
-      value: tesla
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257286831454417761, guid: 464e2bd84373c4b6bbe87608e7fee891,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.42109674
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257286831454417761, guid: 464e2bd84373c4b6bbe87608e7fee891,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257286831454417761, guid: 464e2bd84373c4b6bbe87608e7fee891,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.2408182
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257286831454417761, guid: 464e2bd84373c4b6bbe87608e7fee891,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257286831454417761, guid: 464e2bd84373c4b6bbe87608e7fee891,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257286831454417761, guid: 464e2bd84373c4b6bbe87608e7fee891,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257286831454417761, guid: 464e2bd84373c4b6bbe87608e7fee891,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257286831454417761, guid: 464e2bd84373c4b6bbe87608e7fee891,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257286831454417761, guid: 464e2bd84373c4b6bbe87608e7fee891,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257286831454417761, guid: 464e2bd84373c4b6bbe87608e7fee891,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8663095375801355115, guid: 464e2bd84373c4b6bbe87608e7fee891,
-        type: 3}
-      propertyPath: radius
-      value: 0.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 464e2bd84373c4b6bbe87608e7fee891, type: 3}
 --- !u!1 &2014651589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2299,4 +2226,3 @@ SceneRoots:
   - {fileID: 959237758}
   - {fileID: 1004296188}
   - {fileID: 132223455}
-  - {fileID: 2006163861}

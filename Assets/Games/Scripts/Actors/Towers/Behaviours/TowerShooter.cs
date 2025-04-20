@@ -53,7 +53,7 @@ public class TowerShooter : MonoBehaviour
         {
             if (hit.TryGetComponent(out EnemyBase enemy))
             {
-                if (enemy.CurrentState == EnemyState.Moving)
+                if (enemy.CurrentState == EnemyState.Moving || enemy.CurrentState == EnemyState.Attacking)
                 {
                     float dist = Vector3.Distance(transform.position, enemy.transform.position);
                     if (dist < minDist)

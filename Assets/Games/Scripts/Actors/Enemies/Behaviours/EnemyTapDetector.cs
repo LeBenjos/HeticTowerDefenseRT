@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ZombieTapDetector : MonoBehaviour
+public class EnemyTapDetector : MonoBehaviour
 {
     private Camera mainCamera;
 
@@ -21,7 +21,7 @@ public class ZombieTapDetector : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.TryGetComponent(out EnemyBase enemy))
             {
-                enemy.TakeDamage(50);
+                enemy.TakeDamage(30);
             }
         }
     }

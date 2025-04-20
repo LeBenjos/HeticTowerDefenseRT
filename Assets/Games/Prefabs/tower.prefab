@@ -418,11 +418,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1032453797360632579}
-  - component: {fileID: 4563157638413465226}
   - component: {fileID: 5796878039766160319}
   - component: {fileID: -5888499943186910595}
   - component: {fileID: 6952733039249779239}
   - component: {fileID: -820551259340384607}
+  - component: {fileID: 8901526076741521319}
   m_Layer: 0
   m_Name: tower
   m_TagString: Tower
@@ -448,29 +448,6 @@ Transform:
   - {fileID: 6952210530159587147}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &4563157638413465226
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8939007647477176109}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Height: 0.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!54 &5796878039766160319
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -539,6 +516,27 @@ MonoBehaviour:
   detectionRadius: 1.5
   fireRate: 1
   shootPoint: {fileID: 6952210530159587147}
+--- !u!135 &8901526076741521319
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8939007647477176109}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8998006553524657639
 GameObject:
   m_ObjectHideFlags: 0
