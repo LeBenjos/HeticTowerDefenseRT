@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BarrilTrap : TrapBase
+public class OldBarrilTrap : OldTrapBase
 
 {
     public float forceExplosion = 700f;

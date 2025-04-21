@@ -1,42 +1,9 @@
 using UnityEngine;
 
-public class TrapBase : MonoBehaviour
+public abstract class TrapBase : MonoBehaviour
 {
-    private PlaceTower placeTower;
-    private Transform towerTransform;
+    protected int damage;
+    public int Damage => damage;
 
-    void Start()
-    {
-        placeTower = FindFirstObjectByType<PlaceTower>();
-        TryGetTowerTransform();
-    }
-
-    void Update()
-    {
-        if (towerTransform == null)
-        {
-            TryGetTowerTransform();
-            if (towerTransform == null)
-                return;
-        }
-
-        // Caler la position Y sur la tour
-        Vector3 position = transform.position;
-        position.y = towerTransform.position.y;
-        transform.position = position;
-
-        // Bloquer la rotation X et Z pour rester droit
-        Vector3 rotation = transform.eulerAngles;
-        rotation.x = 0f;
-        rotation.z = 0f;
-        transform.eulerAngles = rotation;
-    }
-
-    void TryGetTowerTransform()
-    {
-        if (placeTower != null && placeTower.GetPlacedTower() != null)
-        {
-            towerTransform = placeTower.GetPlacedTower().transform;
-        }
-    }
+    public abstract void Activate(GameObject enemy);
 }

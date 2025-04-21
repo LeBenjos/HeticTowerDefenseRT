@@ -933,8 +933,9 @@ GameObject:
   - component: {fileID: 1346192603}
   - component: {fileID: 1346192602}
   - component: {fileID: 1346192601}
-  - component: {fileID: 1346192605}
   - component: {fileID: 1346192606}
+  - component: {fileID: 1346192607}
+  - component: {fileID: 1346192605}
   m_Layer: 0
   m_Name: XR Origin (Mobile AR)
   m_TagString: Untagged
@@ -1030,15 +1031,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346192599}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3989c389e79b4e309c1650bd8730f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefabsToSpawn:
-  - {fileID: 567609936629156785, guid: 0840abbb46519472c84d41b4f49fe106, type: 3}
+  - {fileID: 1609560534981940141, guid: 6806b51a1204f4391bf62f2aec31c05a, type: 3}
   - {fileID: 6766636467219153611, guid: 17a165398211248869fd63a2259c9809, type: 3}
-  - {fileID: 5498331465313386198, guid: 6e0fb6c6a371941f88a729a1161cf4d0, type: 3}
+  - {fileID: 5885459958410809471, guid: aa6fc63fb88be48c29ea9135fe29c958, type: 3}
   - {fileID: 4881464563542632923, guid: 464e2bd84373c4b6bbe87608e7fee891, type: 3}
 --- !u!114 &1346192606
 MonoBehaviour:
@@ -1059,6 +1060,25 @@ MonoBehaviour:
     type: 2}
   m_MaxNumberOfMovingImages: 4
   m_TrackedImagePrefab: {fileID: 0}
+--- !u!114 &1346192607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346192599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab131d4bd0a3f4c028cbeec89d1b8439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapPrefabs:
+  - imageName: spike
+    trapPrefab: {fileID: 5885459958410809471, guid: aa6fc63fb88be48c29ea9135fe29c958,
+      type: 3}
+  - imageName: barrel
+    trapPrefab: {fileID: 1609560534981940141, guid: 6806b51a1204f4391bf62f2aec31c05a,
+      type: 3}
 --- !u!1 &1419464924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,7 +1741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65399515ade8642f5acb7979600a9d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 8939007647477176109, guid: dae7da25e227c4adebdd8ab58b18e274,
+  towerPrefab: {fileID: 7016186838215664549, guid: 64f26073c8c174a5781e32a003ec8076,
     type: 3}
   startButton: {fileID: 644986319}
   enemySpawner: {fileID: 1840412540}

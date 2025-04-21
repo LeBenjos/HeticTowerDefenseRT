@@ -1,11 +1,11 @@
 using System.Threading;
 using UnityEngine;
 
-public class AttackEnemy : MonoBehaviour
+public class OldAttackEnemy : MonoBehaviour
 {
     [SerializeField] private float fireCooldown = 3;
     private float bulletReset;
-    public  GameObject canon;
+    public GameObject canon;
     public Transform spawnPoint;
     private Collider DetectEnemy()
     {
@@ -14,7 +14,7 @@ public class AttackEnemy : MonoBehaviour
         Collider closestEnemy = null;
         float closestDistance = Mathf.Infinity;
 
-        foreach(Collider enemy in enemies)
+        foreach (Collider enemy in enemies)
         {
             if (enemy.CompareTag("Enemy"))
             {
@@ -23,7 +23,7 @@ public class AttackEnemy : MonoBehaviour
                 {
                     closestDistance = distance;
                     closestEnemy = enemy;
-                    
+
                     return closestEnemy;
                 }
             }
@@ -31,35 +31,35 @@ public class AttackEnemy : MonoBehaviour
 
         return closestEnemy;
     }
-    
+
     private void ShootBullet()
-    {   
+    {
         bulletReset -= Time.deltaTime;
 
         if (bulletReset <= 0) return;
         {
-        bulletReset = fireCooldown;
+            bulletReset = fireCooldown;
 
-        GameObject bulletObject = Instantiate(canon, spawnPoint.transform.position, spawnPoint.transform.rotation);
-        Rigidbody bulletRigidBody = bulletObject.GetComponent<Rigidbody>();
-        bulletRigidBody.AddForce(bulletRigidBody.transform.forward * 10);
-        Destroy(bulletObject, 0.1f);
+            GameObject bulletObject = Instantiate(canon, spawnPoint.transform.position, spawnPoint.transform.rotation);
+            Rigidbody bulletRigidBody = bulletObject.GetComponent<Rigidbody>();
+            bulletRigidBody.AddForce(bulletRigidBody.transform.forward * 10);
+            Destroy(bulletObject, 0.1f);
 
 
         }
     }
-    
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         ShootBullet();
-        
+
     }
 }

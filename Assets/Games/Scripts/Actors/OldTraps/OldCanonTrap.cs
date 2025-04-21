@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CanonTrap : TrapBase
+public class OldCanonTrap : OldTrapBase
 {
     public GameObject canonBullet;
     public GameObject bulletSpawn;
@@ -47,7 +47,7 @@ public class CanonTrap : TrapBase
         if (currentCooldown <= 0 && enemy != null)
         {
             GameObject bulletObj = Instantiate(canonBullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
-            CanonBullet bullet = bulletObj.GetComponent<CanonBullet>();
+            OldCanonBullet bullet = bulletObj.GetComponent<OldCanonBullet>();
             if (bullet != null)
             {
                 bullet.SetTarget(enemy.transform.position);

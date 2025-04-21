@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CanonBullet : MonoBehaviour
+public class OldCanonBullet : MonoBehaviour
 {
     public float speed = 10f;
     private Rigidbody rb;

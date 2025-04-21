@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class TeslaTrap : TrapBase
+public class OldTeslaTrap : OldTrapBase
 {
     private readonly float slowPercentage = 0.5f;
     private readonly float radius = 0.5f;

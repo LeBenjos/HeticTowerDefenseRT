@@ -9,5 +9,7 @@ TODO :
 - Cartes
 
 - UI home
+- Sound Design
+
 - Presentation
 - Readme
