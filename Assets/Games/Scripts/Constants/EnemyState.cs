@@ -2,7 +2,7 @@ public enum EnemyState
 {
     Spawning,
     Moving,
-    Idle,
+    Dance,
     Dead,
     Stunned,
     Attacking,

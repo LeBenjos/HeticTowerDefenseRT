@@ -1133,6 +1133,18 @@ MonoBehaviour:
   - imageName: tesla
     trapPrefab: {fileID: 3206659912770493625, guid: b35727701d04842f898f1d6c102dc143,
       type: 3}
+  - imageName: tower
+    trapPrefab: {fileID: 3829165642965761797, guid: 75dd63a2ba0584843a4ed3edfbe6ae35,
+      type: 3}
+  - imageName: minion
+    trapPrefab: {fileID: 7830570592680518414, guid: 28b4d61b492bf490584c98ef039e207a,
+      type: 3}
+  - imageName: runner
+    trapPrefab: {fileID: 6405994436575997873, guid: 65102a89cf7ff467ba016b8e24f9f186,
+      type: 3}
+  - imageName: boss
+    trapPrefab: {fileID: 4712909075284718644, guid: d2e80c821333c417d8d6303e69a7d890,
+      type: 3}
 --- !u!1 &1419464924
 GameObject:
   m_ObjectHideFlags: 0

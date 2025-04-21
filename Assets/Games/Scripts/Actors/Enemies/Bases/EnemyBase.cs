@@ -85,8 +85,8 @@ public abstract class EnemyBase : MonoBehaviour
             case EnemyState.Moving:
                 OnMoving();
                 break;
-            case EnemyState.Idle:
-                OnIdle();
+            case EnemyState.Dance:
+                OnDance();
                 break;
             case EnemyState.Dead:
                 OnDead();
@@ -144,7 +144,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void HandleGameOver()
     {
-        SetState(EnemyState.Idle);
+        SetState(EnemyState.Dance);
     }
 
     #endregion
@@ -160,7 +160,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         animator.Play(EnemyAnimationNames.Run);
     }
-    protected virtual void OnIdle()
+    protected virtual void OnDance()
     {
         animator.Play(EnemyAnimationNames.Dance);
     }

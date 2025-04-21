@@ -21,9 +21,9 @@ MonoBehaviour:
       m_GuidLow: 4680055214406577032
       m_GuidHigh: 1365947975535577748
     m_SerializedTextureGuid:
-      m_GuidLow: 8420934996032496644
-      m_GuidHigh: 11191393579435222648
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 9574587329071258186
+      m_GuidHigh: 1388534736933477787
+    m_Size: {x: 0.08, y: 0.08}
     m_SpecifySize: 1
     m_Name: canon
     m_Texture: {fileID: 0}
@@ -31,9 +31,9 @@ MonoBehaviour:
       m_GuidLow: 4836797653379756955
       m_GuidHigh: 2152742108389209783
     m_SerializedTextureGuid:
-      m_GuidLow: 314287691405195627
-      m_GuidHigh: 8997205958630670745
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 17583766847299280904
+      m_GuidHigh: 1326942838149096475
+    m_Size: {x: 0.08, y: 0.08}
     m_SpecifySize: 1
     m_Name: spike
     m_Texture: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
       m_GuidLow: 4745202697977476098
       m_GuidHigh: 958680255390569891
     m_SerializedTextureGuid:
-      m_GuidLow: 7216112468568381151
-      m_GuidHigh: 4093165527034925592
-    m_Size: {x: 0.1, y: 0.101349466}
+      m_GuidLow: 3799619428844797335
+      m_GuidHigh: 9537880220057277914
+    m_Size: {x: 0.08, y: 0.08}
     m_SpecifySize: 1
     m_Name: barrel
     m_Texture: {fileID: 0}
@@ -51,9 +51,49 @@ MonoBehaviour:
       m_GuidLow: 5194020962154494426
       m_GuidHigh: 11180685920827042701
     m_SerializedTextureGuid:
-      m_GuidLow: 17585319293754218976
-      m_GuidHigh: 12468386036552481515
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 14130406924849820086
+      m_GuidHigh: 5834388102244803592
+    m_Size: {x: 0.08, y: 0.08}
     m_SpecifySize: 1
     m_Name: tesla
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5142202955671794325
+      m_GuidHigh: 4930547474995908227
+    m_SerializedTextureGuid:
+      m_GuidLow: 17641738722504096632
+      m_GuidHigh: 11724670278187610793
+    m_Size: {x: 0.08, y: 0.08}
+    m_SpecifySize: 1
+    m_Name: tower
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5134993813207042201
+      m_GuidHigh: 11065483130654238877
+    m_SerializedTextureGuid:
+      m_GuidLow: 1467414341363141957
+      m_GuidHigh: 14514671311368662922
+    m_Size: {x: 0.08, y: 0.08}
+    m_SpecifySize: 1
+    m_Name: minion
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5306577311860932035
+      m_GuidHigh: 15493288312444839591
+    m_SerializedTextureGuid:
+      m_GuidLow: 2605618445248278090
+      m_GuidHigh: 3905211548794087769
+    m_Size: {x: 0.08, y: 0.08}
+    m_SpecifySize: 1
+    m_Name: runner
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5006515104545057543
+      m_GuidHigh: 2837884300973363114
+    m_SerializedTextureGuid:
+      m_GuidLow: 14135866671938854679
+      m_GuidHigh: 13149087181165436937
+    m_Size: {x: 0.08, y: 0.08}
+    m_SpecifySize: 1
+    m_Name: boss
     m_Texture: {fileID: 0}
