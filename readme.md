@@ -1,7 +1,4 @@
 TODO :
-
-- Equilibrage
-- Cartes
-
+- Cards
 - Presentation
 - Readme

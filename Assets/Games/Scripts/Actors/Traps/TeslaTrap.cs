@@ -9,7 +9,7 @@ public class TeslaTrap : TrapBase
     [SerializeField] private Transform linkParent;
     private readonly Dictionary<EnemyBase, GameObject> activeLinks = new();
 
-    private readonly float damageInterval = 2f;
+    private readonly float damageInterval = 1f;
     private readonly float slowFactor = 0.5f;
     private readonly Dictionary<EnemyBase, float> timers = new();
     public void Awake()

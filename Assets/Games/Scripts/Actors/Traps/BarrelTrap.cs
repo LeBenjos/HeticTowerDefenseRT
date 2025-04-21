@@ -15,7 +15,7 @@ public class BarrelTrap : TrapBase
 
     protected void Awake()
     {
-        damage = 1000;
+        damage = 999;
     }
 
     private void OnTriggerEnter(Collider other)
