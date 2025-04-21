@@ -62,6 +62,7 @@ public class PlaceTower : MonoBehaviour
     {
         canPlace = false;
         enemySpawner.SetTarget(placedTower.transform);
+        GameManager.Instance.StopPlaneDetection();
     }
 
     public GameObject GetPlacedTower()
