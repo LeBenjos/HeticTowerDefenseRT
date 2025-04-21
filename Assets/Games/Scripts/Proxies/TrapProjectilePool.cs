@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerProjectilePool : MonoBehaviour
+public class TrapProjectilePool : MonoBehaviour
 {
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private int poolSize = 5;
+    [SerializeField] private int poolSize = 15;
 
     private readonly Queue<GameObject> pool = new();
 
@@ -15,7 +15,10 @@ public class TowerProjectilePool : MonoBehaviour
             GameObject proj = Instantiate(projectilePrefab, transform);
             proj.SetActive(false);
 
-            if (proj.TryGetComponent<TowerProjectile>(out var p)) p.SetPool(this);
+            if (proj.TryGetComponent<TrapProjectile>(out var trapProj))
+            {
+                trapProj.SetPool(this);
+            }
 
             pool.Enqueue(proj);
         }
@@ -30,12 +33,18 @@ public class TowerProjectilePool : MonoBehaviour
 
         GameObject proj = Instantiate(projectilePrefab, transform);
         proj.SetActive(false);
-        proj.GetComponent<TowerProjectile>()?.SetPool(this);
+
+        if (proj.TryGetComponent<TrapProjectile>(out var trapProj))
+        {
+            trapProj.SetPool(this);
+        }
+
         return proj;
     }
 
     public void Return(GameObject proj)
     {
+        proj.SetActive(false);
         pool.Enqueue(proj);
     }
 }

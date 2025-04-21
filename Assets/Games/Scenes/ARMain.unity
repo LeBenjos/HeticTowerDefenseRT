@@ -318,6 +318,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &162314985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 162314986}
+  - component: {fileID: 162314987}
+  m_Layer: 0
+  m_Name: TrapProjectilePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &162314986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162314985}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1004296188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &162314987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162314985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea8133bcab414a98b116456b5dc0eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 8974135912776332159, guid: 83085abc3e8d34d35b2b9f12631283da,
+    type: 3}
+  poolSize: 10
 --- !u!1 &194716436
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,6 +933,7 @@ Transform:
   m_Children:
   - {fileID: 1754846276}
   - {fileID: 484688720}
+  - {fileID: 162314986}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1026333626
@@ -1078,6 +1126,12 @@ MonoBehaviour:
       type: 3}
   - imageName: barrel
     trapPrefab: {fileID: 1609560534981940141, guid: 6806b51a1204f4391bf62f2aec31c05a,
+      type: 3}
+  - imageName: canon
+    trapPrefab: {fileID: 5197078811872392391, guid: 5bb1e0de6775249d892d41d992b0fa44,
+      type: 3}
+  - imageName: tesla
+    trapPrefab: {fileID: 5197078811872392391, guid: 5bb1e0de6775249d892d41d992b0fa44,
       type: 3}
 --- !u!1 &1419464924
 GameObject:
