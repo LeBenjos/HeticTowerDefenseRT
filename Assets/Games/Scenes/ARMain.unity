@@ -427,6 +427,7 @@ MonoBehaviour:
   towerPlacer: {fileID: 1820967410}
   startButton: {fileID: 644986319}
   enemySpawner: {fileID: 1840412540}
+  planeManager: {fileID: 1346192602}
   initialTimeBetweenSpawns: 5
   initialEnemiesPerWave: 1
   gameOverScreen: {fileID: 699598446}

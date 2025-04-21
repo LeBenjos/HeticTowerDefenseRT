@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.XR.ARFoundation;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class GameManager : MonoBehaviour
     public PlaceTower towerPlacer;
     public Button startButton;
     public EnemySpawner enemySpawner;
-
+	public ARPlaneManager planeManager;
+	
     [Header("Game Settings")]
     [SerializeField] private float initialTimeBetweenSpawns = 5f;
     [SerializeField] private int initialEnemiesPerWave = 1;
@@ -165,5 +167,15 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteKey(HIGH_SCORE_KEY);
         PlayerPrefs.Save();
         Debug.Log("High score has been reset");
+    }
+
+    public void StopPlaneDetection()
+    {
+        planeManager.enabled = false;
+
+        foreach (var plane in planeManager.trackables)
+        {
+            plane.gameObject.SetActive(false);
+        }
     }
 }
