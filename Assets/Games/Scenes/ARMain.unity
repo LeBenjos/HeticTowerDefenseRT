@@ -1131,7 +1131,7 @@ MonoBehaviour:
     trapPrefab: {fileID: 5197078811872392391, guid: 5bb1e0de6775249d892d41d992b0fa44,
       type: 3}
   - imageName: tesla
-    trapPrefab: {fileID: 5197078811872392391, guid: 5bb1e0de6775249d892d41d992b0fa44,
+    trapPrefab: {fileID: 3206659912770493625, guid: b35727701d04842f898f1d6c102dc143,
       type: 3}
 --- !u!1 &1419464924
 GameObject:

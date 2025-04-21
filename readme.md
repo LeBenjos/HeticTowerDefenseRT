@@ -1,7 +1,5 @@
 TODO :
 
-- Tesla
-
 - Equilibrage
 - Cartes
 

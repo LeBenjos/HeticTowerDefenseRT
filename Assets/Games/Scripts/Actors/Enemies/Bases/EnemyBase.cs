@@ -117,6 +117,19 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
+    public void TakeFreeDamage(int damage)
+    {
+        if (currentState == EnemyState.Moving || currentState == EnemyState.Attacking)
+        {
+            currentHp -= damage;
+
+            if (currentHp <= 0 && currentState != EnemyState.Dead)
+            {
+                Die();
+            }
+        }
+    }
+
     protected virtual void Die()
     {
         SetState(EnemyState.Dead);
