@@ -10,27 +10,30 @@ public class GameManager : MonoBehaviour
     public PlaceTower towerPlacer;
     public Button startButton;
     public EnemySpawner enemySpawner;
-	public ARPlaneManager planeManager;
-	
+    public ARPlaneManager planeManager;
+
     [Header("Game Settings")]
     [SerializeField] private float initialTimeBetweenSpawns = 5f;
     [SerializeField] private int initialEnemiesPerWave = 1;
     private float gameTime;
     private bool isGameOver = false;
     private int enemyKillCount = 0;
+    private int enemyMinionKillCount = 0;
+    private int enemyRunnerKillCount = 0;
+    private int enemyBossKillCount = 0;
 
     [Header("Game Over UI")]
     public GameObject gameOverScreen;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI killText;
-	public TextMeshProUGUI scoreText;
-	public TextMeshProUGUI highScoreText; 
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI highScoreText;
 
-	[Header("High Score Animation")]
-    public HighScoreAnimator highScoreAnimator; 
-    public GameObject confettiParticleSystem; 
-	
-	private const string HIGH_SCORE_KEY = "HighScore";
+    [Header("High Score Animation")]
+    public HighScoreAnimator highScoreAnimator;
+    public GameObject confettiParticleSystem;
+
+    private const string HIGH_SCORE_KEY = "HighScore";
 
     public static GameManager Instance;
 
@@ -45,10 +48,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-		if (highScoreAnimator == null && highScoreText != null)
+        if (highScoreAnimator == null && highScoreText != null)
         {
             highScoreAnimator = highScoreText.GetComponent<HighScoreAnimator>();
-            
+
             if (highScoreAnimator == null)
             {
                 highScoreAnimator = highScoreText.gameObject.AddComponent<HighScoreAnimator>();
@@ -59,7 +62,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameTime = 0f;
-		// ResetHighScore();
+        // ResetHighScore();
     }
 
     void Update()
@@ -91,41 +94,44 @@ public class GameManager : MonoBehaviour
         );
     }
 
-    public void AddKill()
+    public void AddKill(EnemyType enemyType)
     {
         if (isGameOver) return;
+        if (enemyType == EnemyType.Minion) enemyMinionKillCount++;
+        else if (enemyType == EnemyType.Runner) enemyRunnerKillCount++;
+        else if (enemyType == EnemyType.Boss) enemyBossKillCount++;
         enemyKillCount++;
     }
 
     public void TriggerGameOver()
     {
         isGameOver = true;
-		int score = (int)CalculateScore(gameTime, enemyKillCount);
+        int score = (int)CalculateScore(gameTime, enemyKillCount);
 
-		int highScore = PlayerPrefs.GetInt(HIGH_SCORE_KEY, 0);
+        int highScore = PlayerPrefs.GetInt(HIGH_SCORE_KEY, 0);
 
-		bool isNewHighScore = score > highScore;
+        bool isNewHighScore = score > highScore;
 
-		if (isNewHighScore)
+        if (isNewHighScore)
         {
             PlayerPrefs.SetInt(HIGH_SCORE_KEY, score);
-            PlayerPrefs.Save(); 
+            PlayerPrefs.Save();
         }
 
         gameOverScreen.SetActive(true);
         timeText.text = $"Time Survived: {gameTime:F1}s";
         killText.text = $"Enemies Killed: {enemyKillCount}";
-		scoreText.text = $"Score: {score}/100";
+        scoreText.text = $"Score: {score}/100";
 
-		if (isNewHighScore)
+        if (isNewHighScore)
         {
             highScoreText.text = $"NEW HIGH SCORE: {score}/100";
 
-			if (highScoreAnimator != null)
+            if (highScoreAnimator != null)
             {
                 highScoreAnimator.PlayNewHighScoreAnimation();
             }
-            
+
             if (confettiParticleSystem != null)
             {
                 confettiParticleSystem.SetActive(true);
@@ -139,22 +145,22 @@ public class GameManager : MonoBehaviour
         OnGameOver?.Invoke();
     }
 
-	public float CalculateScore(float playTimeInSeconds, int enemyKillCount)
+    public float CalculateScore(float playTimeInSeconds, int enemyKillCount)
     {
-        const float MAX_PLAY_TIME = 7200f; 
+        const float MAX_PLAY_TIME = 7200f;
         const int MAX_ZOMBIES = 1000;
-    
-        const float PLAY_TIME_WEIGHT = 0.5f; 
-       	const float ZOMBIES_WEIGHT = 0.5f; 
+
+        const float PLAY_TIME_WEIGHT = 0.5f;
+        const float ZOMBIES_WEIGHT = 0.5f;
 
         float playTimeScore = Mathf.Clamp01(playTimeInSeconds / MAX_PLAY_TIME);
         float zombieScore = Mathf.Clamp01((float)enemyKillCount / MAX_ZOMBIES);
-    
-    
+
+
         float totalScore = (playTimeScore * PLAY_TIME_WEIGHT + zombieScore * ZOMBIES_WEIGHT) * 100f;
-    
+
         return Mathf.Round(totalScore);
-	}
+    }
 
     public void RestartGame()
     {
@@ -162,7 +168,7 @@ public class GameManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 
-	public void ResetHighScore()
+    public void ResetHighScore()
     {
         PlayerPrefs.DeleteKey(HIGH_SCORE_KEY);
         PlayerPrefs.Save();
