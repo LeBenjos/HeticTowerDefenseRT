@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     private int enemyMinionKillCount = 0;
     private int enemyRunnerKillCount = 0;
     private int enemyBossKillCount = 0;
+	
+	private int MINION_SCORE_WEIGHT = 1;
+    private int RUNNER_SCORE_WEIGHT = 3;
+	private int BOSS_SCORE_WEIGHT = 5;
 
     [Header("Game Over UI")]
     public GameObject gameOverScreen;
@@ -106,26 +110,26 @@ public class GameManager : MonoBehaviour
     public void TriggerGameOver()
     {
         isGameOver = true;
-        int score = (int)CalculateScore(gameTime, enemyKillCount);
+        float score = CalculateScore();
 
-        int highScore = PlayerPrefs.GetInt(HIGH_SCORE_KEY, 0);
+        float highScore = PlayerPrefs.GetFloat(HIGH_SCORE_KEY, 0);
 
         bool isNewHighScore = score > highScore;
 
         if (isNewHighScore)
         {
-            PlayerPrefs.SetInt(HIGH_SCORE_KEY, score);
+            PlayerPrefs.SetFloat(HIGH_SCORE_KEY, score);
             PlayerPrefs.Save();
         }
 
         gameOverScreen.SetActive(true);
         timeText.text = $"Time Survived: {gameTime:F1}s";
         killText.text = $"Enemies Killed: {enemyKillCount}";
-        scoreText.text = $"Score: {score}/100";
+        scoreText.text = $"Score: {score:F0}";
 
         if (isNewHighScore)
         {
-            highScoreText.text = $"NEW HIGH SCORE: {score}/100";
+            highScoreText.text = $"NEW HIGH SCORE: {score:F0}";
 
             if (highScoreAnimator != null)
             {
@@ -139,28 +143,27 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            highScoreText.text = $"Your Highest Score: {highScore}/100";
+            highScoreText.text = $"Your Highest Score: {highScore:F0}";
         }
 
         OnGameOver?.Invoke();
     }
 
-    public float CalculateScore(float playTimeInSeconds, int enemyKillCount)
+    public float CalculateScore()
     {
-        const float MAX_PLAY_TIME = 7200f;
-        const int MAX_ZOMBIES = 1000;
+		int enemyPoints = CalculateEnemyPoints();
+        float totalScore = (gameTime * 0.25f * (float)enemyPoints);
 
-        const float PLAY_TIME_WEIGHT = 0.5f;
-        const float ZOMBIES_WEIGHT = 0.5f;
-
-        float playTimeScore = Mathf.Clamp01(playTimeInSeconds / MAX_PLAY_TIME);
-        float zombieScore = Mathf.Clamp01((float)enemyKillCount / MAX_ZOMBIES);
-
-
-        float totalScore = (playTimeScore * PLAY_TIME_WEIGHT + zombieScore * ZOMBIES_WEIGHT) * 100f;
-
-        return Mathf.Round(totalScore);
+        return totalScore;
     }
+
+	public int CalculateEnemyPoints()
+	{	
+		int minionPoints = enemyMinionKillCount * MINION_SCORE_WEIGHT;
+		int runnerPoints = enemyMinionKillCount * RUNNER_SCORE_WEIGHT;
+		int bossPoints = enemyMinionKillCount * BOSS_SCORE_WEIGHT;
+		return (minionPoints + runnerPoints + bossPoints);
+	}
 
     public void RestartGame()
     {
