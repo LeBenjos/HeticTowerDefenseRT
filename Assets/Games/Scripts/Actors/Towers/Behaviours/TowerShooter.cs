@@ -4,19 +4,16 @@ using UnityEngine;
 public class TowerShooter : MonoBehaviour
 {
     [Header("Detection")]
-    [SerializeField] private float detectionRadius = 3f;
+    private readonly float detectionRadius = 1.5f;
 
     [Header("Attack")]
-    [SerializeField] private float fireRate = 1f;
+    private readonly float fireRate = 1f;
     [SerializeField] private Transform shootPoint;
-
-    [Header("References")]
     private TowerProjectilePool towerProjectilePool;
     private float fireCooldown;
 
     private void Awake()
     {
-        // Auto-assignation si la référence n’est pas mise à la main
         if (towerProjectilePool == null)
         {
             towerProjectilePool = FindFirstObjectByType<TowerProjectilePool>();

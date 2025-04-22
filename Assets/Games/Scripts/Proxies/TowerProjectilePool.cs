@@ -4,7 +4,7 @@ using UnityEngine;
 public class TowerProjectilePool : MonoBehaviour
 {
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private int poolSize = 20;
+    [SerializeField] private int poolSize = 5;
 
     private readonly Queue<GameObject> pool = new();
 

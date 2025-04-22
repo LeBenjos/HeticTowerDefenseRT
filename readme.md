@@ -1,13 +1,8 @@
 TODO :
-
-- Barril
-- Spike
-- Cannon
-- Tesla
-
-- Equilibrage
-- Cartes
-
-- UI home
-- Presentation
+- Score
+- SFX
 - Readme
+- Presentation
+
+Credit :
+Horror Music by Migfus20 -- https://freesound.org/s/683265/ -- License: Attribution 4.0

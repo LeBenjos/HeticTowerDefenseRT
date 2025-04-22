@@ -2,85 +2,102 @@ using UnityEngine;
 
 public class CanonTrap : TrapBase
 {
-    public GameObject canonBullet;
-    public GameObject bulletSpawn;
+    [Header("Detection")]
+    private readonly float detectionRadius = 1f;
 
-    [SerializeField] float fireCooldown = 3f;
-    private float currentCooldown = 0f;
+    [Header("Attack")]
+    private readonly float fireRate = 2f;
+    [SerializeField] private Transform shootPoint;
 
-    public float detectionRadius = 10f;
-    public float visionAngle = 65f;
+    [Header("Firing Arc")]
+    private readonly float maxFiringAngle = 90f;
 
-    private Collider DetectEnemy()
+    [Header("References")]
+    private TrapProjectilePool projectilePool;
+
+    private float fireCooldown;
+
+    [Header("Visual")]
+    [SerializeField] private Transform rotatingHead;
+
+    private readonly float rotationSpeed = 5f;
+
+    private void Awake()
+    {
+        if (projectilePool == null)
+        {
+            projectilePool = FindFirstObjectByType<TrapProjectilePool>();
+        }
+    }
+
+    private void Update()
+    {
+        if (!enabled) return;
+
+        fireCooldown -= Time.deltaTime;
+
+        if (fireCooldown <= 0f)
+        {
+            EnemyBase target = FindClosestEnemyInFiringArc();
+
+            if (target != null)
+            {
+                Vector3 dir = target.transform.position - rotatingHead.position;
+                dir.y = 0f;
+                rotatingHead.rotation = Quaternion.LookRotation(dir);
+                Shoot(target);
+                fireCooldown = 1f / fireRate;
+            }
+        }
+    }
+
+    private EnemyBase FindClosestEnemyInFiringArc()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius);
-        Collider closestEnemy = null;
-        float closestDistance = Mathf.Infinity;
+        EnemyBase closest = null;
+        float minDistance = Mathf.Infinity;
 
-        foreach (Collider hit in hits)
+        Vector3 forward = transform.forward;
+
+        foreach (var hit in hits)
         {
-            if (hit.CompareTag("Enemy"))
-            {
-                Vector3 directionToEnemy = (hit.transform.position - transform.position).normalized;
-                float distanceToEnemy = Vector3.Distance(transform.position, hit.transform.position);
-                float angleToEnemy = Vector3.Angle(transform.forward, directionToEnemy);
+            if (!hit.CompareTag("Enemy")) continue;
 
-                if (distanceToEnemy <= detectionRadius && angleToEnemy <= visionAngle / 2)
+            if (hit.CompareTag("Enemy") && hit.TryGetComponent(out EnemyBase enemy))
+            {
+                if (enemy.CurrentState != EnemyState.Moving && enemy.CurrentState != EnemyState.Attacking)
+                    continue;
+
+                Vector3 directionToEnemy = (enemy.transform.position - transform.position).normalized;
+                float angle = Vector3.Angle(transform.forward, directionToEnemy);
+
+                if (angle > maxFiringAngle) continue;
+
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distance < minDistance)
                 {
-                    if (distanceToEnemy < closestDistance)
-                    {
-                        closestDistance = distanceToEnemy;
-                        closestEnemy = hit;
-                    }
+                    minDistance = distance;
+                    closest = enemy;
                 }
             }
         }
 
-        return closestEnemy;
+        return closest;
     }
 
-
-    private void ShootBullet(Collider enemy)
+    private void Shoot(EnemyBase target)
     {
-        currentCooldown -= Time.deltaTime;
+        if (projectilePool == null || shootPoint == null || target == null) return;
 
-        if (currentCooldown <= 0 && enemy != null)
+        GameObject projectile = projectilePool.Get();
+        projectile.transform.SetPositionAndRotation(shootPoint.position, Quaternion.identity);
+        projectile.SetActive(true);
+
+        if (projectile.TryGetComponent(out TrapProjectile trapProj))
         {
-            GameObject bulletObj = Instantiate(canonBullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
-            CanonBullet bullet = bulletObj.GetComponent<CanonBullet>();
-            if (bullet != null)
-            {
-                bullet.SetTarget(enemy.transform.position);
-            }
-            currentCooldown = fireCooldown;
+            trapProj.Initialize(target.transform);
         }
     }
 
-
-    void Update()
-    {
-        Collider isEnemy = DetectEnemy();
-        if (isEnemy != null)
-        {
-            ShootBullet(isEnemy);
-        }
-
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
-
-        Gizmos.color = Color.red;
-        int segments = 30;
-        float halfAngle = visionAngle / 2f;
-
-        for (int i = 0; i <= segments; i++)
-        {
-            float angle = -halfAngle + visionAngle / segments * i;
-            Vector3 direction = Quaternion.Euler(0, angle, 0) * transform.forward;
-            Gizmos.DrawLine(transform.position, transform.position + direction * detectionRadius);
-        }
-    }
-
+    public override void Activate(GameObject _) { }
 }
