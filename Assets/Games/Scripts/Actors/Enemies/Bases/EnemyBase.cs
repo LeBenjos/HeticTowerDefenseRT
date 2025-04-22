@@ -133,7 +133,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void Die()
     {
         SetState(EnemyState.Dead);
-        GameManager.Instance.AddKill();
+        GameManager.Instance.AddKill(EnemyType);
     }
 
     protected virtual void Stumble()
