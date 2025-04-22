@@ -12,6 +12,9 @@ public class TowerShooter : MonoBehaviour
     private TowerProjectilePool towerProjectilePool;
     private float fireCooldown;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource shootAudio;
+
     private void Awake()
     {
         if (towerProjectilePool == null)
@@ -72,6 +75,11 @@ public class TowerShooter : MonoBehaviour
         GameObject proj = towerProjectilePool.Get();
         proj.transform.SetPositionAndRotation(shootPoint.position, Quaternion.identity);
         proj.SetActive(true);
+
+        if (shootAudio != null)
+        {
+            shootAudio.Play();
+        }
 
         proj.GetComponent<TowerProjectile>()?.Initialize(target.transform);
     }
