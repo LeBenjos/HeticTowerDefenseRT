@@ -22,6 +22,9 @@ public class CanonTrap : TrapBase
 
     private readonly float rotationSpeed = 5f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource shootAudio;
+
     private void Awake()
     {
         if (projectilePool == null)
@@ -92,6 +95,11 @@ public class CanonTrap : TrapBase
         GameObject projectile = projectilePool.Get();
         projectile.transform.SetPositionAndRotation(shootPoint.position, Quaternion.identity);
         projectile.SetActive(true);
+
+        if (shootAudio != null)
+        {
+            shootAudio.Play();
+        }
 
         if (projectile.TryGetComponent(out TrapProjectile trapProj))
         {
