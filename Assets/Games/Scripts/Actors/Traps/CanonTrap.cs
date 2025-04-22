@@ -3,40 +3,42 @@ using UnityEngine;
 public class CanonTrap : TrapBase
 {
     [Header("Detection")]
-    private readonly float detectionRadius = 1f;
+    private readonly float detectionRadius = 0.5f;
 
     [Header("Attack")]
-    private readonly float fireRate = 2f;
-    [SerializeField] private Transform shootPoint;
+    public float fireRate = 2f;
+    public Transform shootPoint;
 
     [Header("Firing Arc")]
-    private readonly float maxFiringAngle = 90f;
+    public float maxFiringAngle = 180f;
 
     [Header("References")]
-    private TrapProjectilePool projectilePool;
+    public TrapProjectilePool projectilePool;
 
     private float fireCooldown;
 
     [Header("Visual")]
-    [SerializeField] private Transform rotatingHead;
+    public Transform rotatingHead;
 
-    private readonly float rotationSpeed = 5f;
+    public float rotationSpeed = 5f;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource shootAudio;
+    public AudioSource shootAudio;
 
-    private void Awake()
+    private LineRenderer detectionZoneRenderer;
+
+    private void Start()
     {
         if (projectilePool == null)
         {
             projectilePool = FindFirstObjectByType<TrapProjectilePool>();
         }
+
+        SetupDetectionZone();
     }
 
     private void Update()
     {
-        if (!enabled) return;
-
         fireCooldown -= Time.deltaTime;
 
         if (fireCooldown <= 0f)
@@ -52,6 +54,8 @@ public class CanonTrap : TrapBase
                 fireCooldown = 1f / fireRate;
             }
         }
+
+        UpdateDetectionZone();
     }
 
     private EnemyBase FindClosestEnemyInFiringArc()
@@ -60,13 +64,11 @@ public class CanonTrap : TrapBase
         EnemyBase closest = null;
         float minDistance = Mathf.Infinity;
 
-        Vector3 forward = transform.forward;
-
         foreach (var hit in hits)
         {
             if (!hit.CompareTag("Enemy")) continue;
 
-            if (hit.CompareTag("Enemy") && hit.TryGetComponent(out EnemyBase enemy))
+            if (hit.TryGetComponent(out EnemyBase enemy))
             {
                 if (enemy.CurrentState != EnemyState.Moving && enemy.CurrentState != EnemyState.Attacking)
                     continue;
@@ -105,6 +107,42 @@ public class CanonTrap : TrapBase
         {
             trapProj.Initialize(target.transform);
         }
+    }
+
+    // -------- Zone visuelle AR ----------
+
+    private void SetupDetectionZone()
+    {
+        detectionZoneRenderer = gameObject.AddComponent<LineRenderer>();
+        detectionZoneRenderer.loop = true;
+        detectionZoneRenderer.useWorldSpace = true;
+        detectionZoneRenderer.material = new Material(Shader.Find("Unlit/Color"))
+        {
+            color = new Color(1f, 0f, 0f, 0.3f)
+        };
+        detectionZoneRenderer.startWidth = 0.01f;
+        detectionZoneRenderer.endWidth = 0.005f;
+        detectionZoneRenderer.positionCount = 50;
+        DrawDetectionZone();
+    }
+
+    private void DrawDetectionZone()
+    {
+        float angleStep = 360f / detectionZoneRenderer.positionCount;
+        float angle = 0f;
+
+        for (int i = 0; i < detectionZoneRenderer.positionCount; i++)
+        {
+            float x = transform.position.x + Mathf.Sin(Mathf.Deg2Rad * angle) * detectionRadius;
+            float z = transform.position.z + Mathf.Cos(Mathf.Deg2Rad * angle) * detectionRadius;
+            detectionZoneRenderer.SetPosition(i, new Vector3(x, transform.position.y, z));
+            angle += angleStep;
+        }
+    }
+
+    private void UpdateDetectionZone()
+    {
+        DrawDetectionZone();
     }
 
     public override void Activate(GameObject _) { }

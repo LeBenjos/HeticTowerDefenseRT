@@ -5,6 +5,9 @@ using UnityEngine;
 public class SpikeTrap : TrapBase
 {
     protected float damageInterval = 6f;
+
+    [Header("Audio")]
+    public AudioSource spikeAudio;
     protected void Awake()
     {
         damage = 25;
@@ -45,6 +48,10 @@ public class SpikeTrap : TrapBase
     {
         if (enemyObject.TryGetComponent(out EnemyBase enemy))
         {
+            if (spikeAudio != null)
+            {
+                spikeAudio.Play();
+            }
             enemy.TakeDamage(damage);
         }
     }

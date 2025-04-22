@@ -11,6 +11,9 @@ public class BarrelTrap : TrapBase
     [SerializeField] private GameObject meshToDisable;
     [SerializeField] private ParticleSystem explosionVFX;
 
+    [Header("Audio")]
+    public AudioSource explosionAudio;
+
     private bool isOnCooldown = false;
 
     protected void Awake()
@@ -32,6 +35,11 @@ public class BarrelTrap : TrapBase
     {
         if (explosionVFX != null) explosionVFX.Play();
         if (meshToDisable != null) meshToDisable.SetActive(false);
+
+        if (explosionAudio != null)
+        {
+            explosionAudio.Play();
+        }
 
         Collider[] hits = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (var hit in hits)
